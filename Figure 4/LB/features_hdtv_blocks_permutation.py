@@ -9,8 +9,8 @@ from sklearn import svm
 #insert path to your folder
 
 #import features and scores for hdtv
-all_features_hdtv=np.load('features_hdtv.npy')
-users_score_hdtv=np.load('users_scores_hdtv.npy')
+all_features_hdtv=np.load('input_data/features_hdtv.npy')
+users_score_hdtv=np.load('input_data/users_scores_hdtv.npy')
 
 def move_columns(arr, current_indices, new_indices):
     # Create a copy of the array
@@ -144,5 +144,5 @@ for each_user_y in users_score_hdtv:
     conta += 1
     save_mae_importance_for_all_hdtv.append(group_importances)
     save_rmse_importance_for_all_hdtv.append(group_importances_sqrt)
-np.save('save_mae_importance_for_all_hdtv.npy',save_mae_importance_for_all_hdtv)
-np.save('save_rmse_importance_for_all_hdtv.npy',save_rmse_importance_for_all_hdtv)
+np.save('output_data/save_mae_importance_for_all_hdtv.npy',save_mae_importance_for_all_hdtv)
+np.save('output_data/save_rmse_importance_for_all_hdtv.npy',save_rmse_importance_for_all_hdtv)
