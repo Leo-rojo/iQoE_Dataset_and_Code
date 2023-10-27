@@ -1,0 +1,4 @@
+## Generate Figure 18:
+* input file: folder features_generated_experiences and synthetic_users_scores_for_generated_experiences. Both of them can be generated in Synthetic_users_implementation.
+* Run Generate_results_for_time_and_space_overhead.py in order to generate data that are saved in folder mq and time_over. The first contains the saved iQoE models at different training steps for all the synthetic users, the latter contains the time needed to select and train a new experience instance at different training steps for each synthetic users.
+* Run Plots.py to generate time and space overhead plots aka Figure 18.

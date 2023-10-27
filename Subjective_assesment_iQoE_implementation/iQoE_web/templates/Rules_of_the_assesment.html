@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <h1>Training of Your Personalized QoE Model</h1>
+    <p align="justify" style="width:800px">To construct a personalized Quality of Experience (QoE) model for your individual perception of video quality, this website will present 120 video clips and ask you to score them.</p>
+    <ul>
+      <li style="width:800px">If you use the site for the first time, press the "Start a New Session" button.</li>
+      <li style="width:800px">If you want to continue with an earlier unfinished session, press the "Resume an Earlier Session" button.</li>
+    </ul>
+ <p>Please be aware that:</p>
+    <ul>
+    <li style="width:800px"> The long duration and repetitive pattern of watching the video clips and providing QoE scores might cause psychological stress and tiredness.
+    <li style="width:800px"> The video clips, extracted from the short film "Tears of Steel", might contain sensitive content.
+    <li style="width:800px"> In order to resume a paused session, we use cookies that contain no personal information and expire after 3 days.
+    </ul>
+  <p> By clicking "Accept and Start a New Session" or "Accept and Resume an Earlier Session", you are confirming that <b>you have read and agree to terms and conditions of this assessment.</b>  </p>
+
+
+</head>
+
+<body>
+<button type="button" onclick="start_session()" style="background-color: #4FFF33;">Accept and Start a New Session</button>
+<button type="button" onclick="continue_session()">Accept and Resume an Earlier Session</button>
+<script>
+if ('{{id_not_found}}'=='the identifier does not exist'){
+  alert("the identifier does not exist");
+}
+
+function start_session(){
+    window.location.href = '../reference_video_form';
+}
+function continue_session(){
+    window.location.href = '../restart';
+}
+</script>
+</body>
+</html>

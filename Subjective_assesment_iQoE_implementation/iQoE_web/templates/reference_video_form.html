@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <h1>Do you want to watch the reference video? (Optional)</h1>
+  <p align="justify" style="width:800px">The reference video has the maximum quality among all video clips in this assessment.
+    Watching the reference video might help you to calibrate your highest expectations for the subsequently watched clips.
+    To watch the reference video, please press the "Yes" button below, put the video in the full screen, and start playing the video.<br> Note that you can play
+the video only after fully downloading it, which might take some time<br><br>
+  </p>
+
+</head>
+
+<body>
+<button type="button" onclick="yes()" style="height:33px; width:200px; background-color: #4FFF33;">Yes</button>
+<button type="button" onclick="no()" style="height:33px; width:200px">No</button>
+<script>
+
+function yes(){
+    window.location.href = '../show_video_reference_start';
+}
+function no(){
+    window.location.href = '../start';
+}
+</script>
+</body>
+</html>

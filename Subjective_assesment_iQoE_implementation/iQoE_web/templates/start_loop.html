@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <h1>Current Status</h1>
+  <h3 align="justify" style="width:800px">So far, you have watched and scored {{query_nr}} out of {{total_queries}} test videos.</h3>
+</head>
+
+To watch a test video, please press the button below and put the video in the full screen.<br> Note that you can play
+the video only after fully downloading it, which might take some time.<br><br>
+<button type="button" onclick="see_test_video()" style="height:33px; width:200px;background-color: #4FFF33; /* Green */">Watch a Test Video</button>
+
+<body>
+<br><br>
+You may also do the following actions:
+<br>
+<ul>
+  <li>Refresh your memory of the reference video, so to re-calibrate your highest expectations for the video clip:</li><br>
+  <button type="button" onclick="play_reference()" style="height:33px; width:200px">Watch the Reference Video</button>
+  <br><br>
+  <li>See statistics for the scores that you have already submitted, so to be more consistent in your evaluation:</li><br>
+  <button type="button" onclick="see_statistics()" style="height:33px; width:200px">See Statistics</button>
+  <br><br>
+  <li>Save the session, so that you can resume it later:</li><br>
+  <button type="button" onclick="pause()" style="height:33px; width:200px">Pause the Session</button>
+</ul>
+
+
+<script>
+if ('{{id_not_found}}'=='the identifier does not exist'){
+  alert("the identifier does not exist");
+}
+
+if ('{{id_not_found}}'=='the identifier does exist'){
+  alert("session loaded correctly");
+}
+
+function play_reference(){
+    window.location.href = '../show_video_reference';
+}
+function see_statistics(){
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", '/save_controls', true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send('keyword=statistics');
+    alert("Max: {{max}} \nMin: {{min}} \nAverage: {{average}} \nPrevious: {{previous}}");
+}
+function see_test_video(){
+    window.location.href = '../show_video_loop';
+}
+function pause(){
+    window.location.href = '../paused_experience';
+}
+</script>
+</body>
+</html>

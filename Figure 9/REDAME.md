@@ -1,0 +1,3 @@
+## Generate Figure 9
+* input files: Fitted_models_without_logistic folder which contains the unbounded synthetic users (meaning that they can give scores even outside the 1-100 range), save_params_sigmoids folder which contains the parameters for the sigmoid normalization of synthetic users scores (both folders can be found in Synthetic_users_implementation folder), users folder containing the 34 users from the first phase of subjective assessment 
+* Run check_correlation.py to generate Figure 9

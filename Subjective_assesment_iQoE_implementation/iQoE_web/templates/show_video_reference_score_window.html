@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Video</title>
+<link rel="stylesheet" href={{url_for('static', filename="controls.css")}}>
+</head>
+<body>
+<div id="video-container" style="display: none" >
+ <video width="100%" height="100%" autoplay id="myVideo">
+ <source src="" type="video/mp4"> <!--    {{url_for('static', filename=distorted_video)}}-->
+ </video>
+ <button type="button" onclick="fullScreenClick()" style="background-color: #4FFF33;">FullScreen</button>
+</div>
+<div id="text-wait">
+ <h1>Video is loading...</h1>
+</div>
+</body>
+<script type='text/javascript'>
+    var req = new XMLHttpRequest();
+    console.log('{{url_for('static', filename=distorted_video)}}');
+    req.open('GET', '{{url_for('static', filename=distorted_video)}}', true);
+    req.responseType = 'arraybuffer';
+    console.log('here')
+    req.onload = function(e) {
+       console.log('inside')
+       // Onload is triggered even on 404
+       // so we need to check the status code
+       if (this.status === 200) {
+          var videoBlob = new Blob([req.response]);
+          var vid = URL.createObjectURL(videoBlob); // IE10+
+          console.log(vid);
+          // Hide the code in first div tag
+          document.getElementById('text-wait').style.display = 'none';
+          // Display code in second div tag
+          document.getElementById('video-container').style.display = 'block';
+          // Video is now downloaded
+          // and we can set it as source on the video element
+          myVideo.src = vid;
+       }
+    }
+
+    req.send();
+
+    document.getElementById('myVideo').addEventListener('ended',myHandler,false);
+    //document.getElementById('myVideo').addEventListener('play',played,false);
+    document.getElementById('myVideo').addEventListener('pause',paused,false);
+    document.getElementById('myVideo').addEventListener('seeked',seeked,false);
+
+    function fullScreenClick(e) {
+        var elem = document.getElementById("myVideo");
+        if (elem.requestFullscreen) {
+          elem.requestFullscreen();
+        } else if (elem.mozRequestFullScreen) {
+          elem.mozRequestFullScreen();
+        } else if (elem.webkitRequestFullscreen) {
+          elem.webkitRequestFullscreen();
+        } else if (elem.msRequestFullscreen) {
+          elem.msRequestFullscreen();
+        }
+        elem.controls = false
+    }
+
+    function myHandler(e) {
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", '/save_controls', true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.send('keyword=ended');
+        window.location.href = '../score_window';
+    }
+    function played(e) {
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", '/save_controls', true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.send('keyword=reference_play');
+    }
+    function paused(e) {
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", '/save_controls', true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.send('keyword=reference_paused');
+    }
+    function seeked(e) {
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", '/save_controls', true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.send('keyword=reference_seeked');
+    }
+</script>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href={{url_for('static', filename="slider.css")}}>
+    <h1>Score the Watched Video</h1>
+    <p align="justify" style="width:800px">Please select your score for the watched test video on the scale from 1 to 100 by dragging the handle on the slider below to the numeric value of your assessment.</p>
+    <!--<link rel="stylesheet" href="slider.css">-->
+</head>
+<body>
+<div class="slidecontainer">
+  <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+    <div class="scale_description">
+    <b class="bad">1-20: bad&nbsp&nbsp</b>
+    <b class="poor">21-40: poor&nbsp&nbsp</b>
+    <b class="fair">41-60: fair&nbsp&nbsp</b>
+    <b class="good">61-80: good&nbsp&nbsp</b>
+    <b class="excellent">81-100: excellent</b>
+    </div>
+</div>
+
+<h2>Current Value: <span id="demo"></span></h2>
+
+To submit the above current value as your score for the video, please press the button below:<br><br>
+
+<form style="display: none" action="/start_loop" method="POST" id="myForm">
+  <input type="hidden" id="var1" name="var1" value=""/>
+</form>
+
+<button class='generic_button' type="button" onclick="confirm()" style="height:53px; width:200px;background-color: #4FFF33;">Submit the Score</button><br><br>
+You may also do the following actions:
+<ul>
+    <li>Refresh your memory of the reference video, so to re-calibrate your highest expectations for the video clip:</li><br>
+    <button class='generic_button' type="button" onclick="play_reference()">Play reference video</button><br><br>
+
+    <li>See statistics for the scores that you have already submitted, so to be more consistent in your evaluation:</li><br>
+    <button class='generic_button' type="button" onclick="statistics()">See Statistics</button><br><br>
+
+    <li>Watch again the already seen test video, so to clarify your evaluation of the video:</li><br>
+    <button class='generic_button' type="button" onclick="replay()">Rewatch This Test Video</button>
+
+</ul>
+
+
+
+
+
+
+<script src={{url_for('static', filename="sliderjs.js") }}></script>
+<script>
+function statistics(){
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", '/save_controls', true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send('keyword=statistics');
+    alert("Max: {{max}} \nMin: {{min}} \nAverage: {{average}} \nPrevious: {{previous}}");
+}
+</script>
+</body>
+</html>
