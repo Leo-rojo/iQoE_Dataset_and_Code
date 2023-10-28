@@ -73,8 +73,8 @@ def fit_supreg(all_features, users_scores):
     return regressor.best_estimator_
 
 #split in groups
-baselines_all_users_score=np.load('baselines_scores.npy')
-test_scores_all_users=np.load('test_scores.npy')
+baselines_all_users_score=np.load('input_data/baselines_scores.npy')
+test_scores_all_users=np.load('input_data/test_scores.npy')
 #merge them
 baselines_all_users_score_total=[]
 for i in range(len(baselines_all_users_score)):
@@ -86,7 +86,7 @@ aveeachuserarray=np.median(baselines_all_users_score_total,axis=1)
 index=np.argsort(aveeachuserarray)
 
 user_considered=index[-1]
-identifiers=np.load('identifiers_order.npy')
+identifiers=np.load('input_data/identifiers_order.npy')
 
 
 
@@ -121,19 +121,19 @@ for group_n in group_division:#[1,2,4,8,16,32]:
 
     mos_for_training=mos_each_split[index_of_medianmos_each_split_closest_to_median_considered_user]
     #take iqoe of the user considered (last one of the index)
-    iqoes_mae=np.load('iQoE_mae_each_user.npy')[user_considered]
-    iqoes_rmse=np.load('iQoE_rmse_each_user.npy')[user_considered]
+    iqoes_mae=np.load('input_data/iQoE_mae_each_user.npy')[user_considered]
+    iqoes_rmse=np.load('input_data/iQoE_rmse_each_user.npy')[user_considered]
     #take p1203 of the user considered (last one of the index)
-    p1203_mae=np.load('p1203_mae_each_user.npy')[user_considered]
-    p1203_rmse=np.load('p1203_rmse_each_user.npy')[user_considered]
+    p1203_mae=np.load('input_data/p1203_mae_each_user.npy')[user_considered]
+    p1203_rmse=np.load('input_data/p1203_rmse_each_user.npy')[user_considered]
     #take lstm of the user considered (last one of the index)
-    lstm_mae=np.load('lstm_mae_each_user.npy')[user_considered]
-    lstm_rmse=np.load('lstm_rmse_each_user.npy')[user_considered]
+    lstm_mae=np.load('input_data/lstm_mae_each_user.npy')[user_considered]
+    lstm_rmse=np.load('input_data/lstm_rmse_each_user.npy')[user_considered]
 
     #ssim
-    x_tr=np.load('features_qoes_train/feat_ssim.npy')
-    x_test=np.load('features_qoes_test/feat_ssim.npy')
-    y_test_all_users=np.load('test_scores.npy')
+    x_tr=np.load('input_data/features_qoes_train/feat_ssim.npy')
+    x_test=np.load('input_data/features_qoes_test/feat_ssim.npy')
+    y_test_all_users=np.load('input_data/test_scores.npy')
 
     y=mos_for_training
     a,b,c=fit_linear(x_tr,y)
@@ -144,9 +144,9 @@ for group_n in group_division:#[1,2,4,8,16,32]:
     rmse_ssim=sqrt(mean_squared_error(y_test, y_pred))
 
     #ftw
-    x_tr=np.load('features_qoes_train/feat_ftw.npy')
-    x_test=np.load('features_qoes_test/feat_ftw.npy')
-    y_test_all_users=np.load('test_scores.npy')
+    x_tr=np.load('input_data/features_qoes_train/feat_ftw.npy')
+    x_test=np.load('input_data/features_qoes_test/feat_ftw.npy')
+    y_test_all_users=np.load('input_data/test_scores.npy')
     y = mos_for_training
     a, b, c, d = fit_nonlinear((x_tr[:, 0], x_tr[:, 1]), y)
     y_pred = a * np.exp(-(b * x_test[:, 0] + c) * x_test[:, 1]) + d
@@ -157,9 +157,9 @@ for group_n in group_division:#[1,2,4,8,16,32]:
     rmse_ftw=sqrt(mean_squared_error(y_test, y_pred))
 
     #videoatlas
-    x_tr=np.load('features_qoes_train/feat_va.npy')
-    x_test=np.load('features_qoes_test/feat_va.npy')
-    y_test_all_users=np.load('test_scores.npy')
+    x_tr=np.load('input_data/features_qoes_train/feat_va.npy')
+    x_test=np.load('input_data/features_qoes_test/feat_va.npy')
+    y_test_all_users=np.load('input_data/test_scores.npy')
     y=mos_for_training
     reg=fit_supreg(x_tr, y)
     y_test = y_test_all_users[user_considered]
@@ -168,9 +168,9 @@ for group_n in group_division:#[1,2,4,8,16,32]:
     rmse_videoatlas=sqrt(mean_squared_error(y_test, y_pred))
 
     #psnr
-    x_tr=np.load('features_qoes_train/feat_psnr.npy')
-    x_test=np.load('features_qoes_test/feat_psnr.npy')
-    y_test_all_users=np.load('test_scores.npy')
+    x_tr=np.load('input_data/features_qoes_train/feat_psnr.npy')
+    x_test=np.load('input_data/features_qoes_test/feat_psnr.npy')
+    y_test_all_users=np.load('input_data/test_scores.npy')
     y=mos_for_training
     a, b, c = fit_linear(x_tr, y)
     # calculate mae and rmse of the model for the user in index
@@ -180,9 +180,9 @@ for group_n in group_division:#[1,2,4,8,16,32]:
     rmse_psnr=sqrt(mean_squared_error(y_test, y_pred))
 
     #bitrate
-    x_tr=np.load('features_qoes_train/feat_bit.npy')
-    x_test=np.load('features_qoes_test/feat_bit.npy')
-    y_test_all_users=np.load('test_scores.npy')
+    x_tr=np.load('input_data/features_qoes_train/feat_bit.npy')
+    x_test=np.load('input_data/features_qoes_test/feat_bit.npy')
+    y_test_all_users=np.load('input_data/test_scores.npy')
     y=mos_for_training
     a, b, c = fit_linear(x_tr, y)
     # calculate mae and rmse of the model for the user in index
@@ -192,9 +192,9 @@ for group_n in group_division:#[1,2,4,8,16,32]:
     rmse_bit=sqrt(mean_squared_error(y_test, y_pred))
 
     #logbit
-    x_tr=np.load('features_qoes_train/feat_logbit.npy')
-    x_test=np.load('features_qoes_test/feat_logbit.npy')
-    y_test_all_users=np.load('test_scores.npy')
+    x_tr=np.load('input_data/features_qoes_train/feat_logbit.npy')
+    x_test=np.load('input_data/features_qoes_test/feat_logbit.npy')
+    y_test_all_users=np.load('input_data/test_scores.npy')
     y=mos_for_training
     a, b, c = fit_linear(x_tr, y)
     # calculate mae and rmse of the model for the user in index
@@ -204,9 +204,9 @@ for group_n in group_division:#[1,2,4,8,16,32]:
     rmse_logbit=sqrt(mean_squared_error(y_test, y_pred))
 
     #vmaf
-    x_tr=np.load('features_qoes_train/feat_vmaf.npy')
-    x_test=np.load('features_qoes_test/feat_vmaf.npy')
-    y_test_all_users=np.load('test_scores.npy')
+    x_tr=np.load('input_data/features_qoes_train/feat_vmaf.npy')
+    x_test=np.load('input_data/features_qoes_test/feat_vmaf.npy')
+    y_test_all_users=np.load('input_data/test_scores.npy')
     y=mos_for_training
     a, b, c = fit_linear(x_tr, y)
     # calculate mae and rmse of the model for the user in index
@@ -216,9 +216,9 @@ for group_n in group_division:#[1,2,4,8,16,32]:
     rmse_vmaf=sqrt(mean_squared_error(y_test, y_pred))
 
     #sdn
-    x_tr=np.load('features_qoes_train/feat_sdn.npy')
-    x_test=np.load('features_qoes_test/feat_sdn.npy')
-    y_test_all_users=np.load('test_scores.npy')
+    x_tr=np.load('input_data/features_qoes_train/feat_sdn.npy')
+    x_test=np.load('input_data/features_qoes_test/feat_sdn.npy')
+    y_test_all_users=np.load('input_data/test_scores.npy')
     y=mos_for_training
     a, b, c = fit_linear(x_tr, y)
     # calculate mae and rmse of the model for the user in index

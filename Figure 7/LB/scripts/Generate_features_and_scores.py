@@ -2,7 +2,7 @@ import numpy as np
 import os
 #insert path to your folder Figure 7
 nr_c = 4
-path_iQoE='users'
+path_iQoE='../input_data/users'
 maes=[]
 rmses=[]
 scores_more_users=[]
@@ -49,8 +49,8 @@ for fold in os.listdir(path_iQoE):
         scores_more_users.append(a[0]+b[0])
         videos_more_users.append(a2[0]+b2[0])
         identifiers_order.append(identifier)
-np.save('identifiers_order',identifiers_order)
-np.save('baselines_scores',scores_more_users)
+np.save('../output_data/identifiers_order',identifiers_order)
+np.save('../output_data/baselines_scores',scores_more_users)
 idx_col_train = np.load(path_iQoE+'/original_database/idx_col_train.npy')
 exp_orig = np.load(path_iQoE+'/original_database/synth_exp_train.npy')
 scaled_exp_orig = np.load(path_iQoE+'/original_database/X_train_scaled.npy')
@@ -165,16 +165,16 @@ for exp in exp_orig_train:
     collect_SDNdash.append([s_vmaf_ave, s_reb_ave, a_dif_vmaf])  # without initial stall since we don't have it in our dataset
     collect_videoAtlas.append([s_vmaf_ave, s_reb / tot_dur_plus_reb, nr_stall, m, i])
 
-if not os.path.exists('features_qoes_train'):
-    os.makedirs('features_qoes_train')
-np.save('features_qoes_train/feat_vmaf', collect_sumvmaf)
-np.save('features_qoes_train/feat_va', collect_videoAtlas)
-np.save('features_qoes_train/feat_sdn', collect_SDNdash)
-np.save('features_qoes_train/feat_ftw', collect_FTW)
-np.save('features_qoes_train/feat_psnr', collect_sumpsnr)
-np.save('features_qoes_train/feat_ssim', collect_sumssim)
-np.save('features_qoes_train/feat_bit', collect_sumbit)
-np.save('features_qoes_train/feat_logbit', collect_logbit)
+if not os.path.exists('../output_data/../output_data/features_qoes_train'):
+    os.makedirs('../output_data/../output_data/features_qoes_train')
+np.save('../output_data/features_qoes_train/feat_vmaf', collect_sumvmaf)
+np.save('../output_data/features_qoes_train/feat_va', collect_videoAtlas)
+np.save('../output_data/features_qoes_train/feat_sdn', collect_SDNdash)
+np.save('../output_data/features_qoes_train/feat_ftw', collect_FTW)
+np.save('../output_data/features_qoes_train/feat_psnr', collect_sumpsnr)
+np.save('../output_data/features_qoes_train/feat_ssim', collect_sumssim)
+np.save('../output_data/features_qoes_train/feat_bit', collect_sumbit)
+np.save('../output_data/features_qoes_train/feat_logbit', collect_logbit)
 
 
 
@@ -198,7 +198,7 @@ for fold in os.listdir(path_iQoE):
                key = nextline.split()[-1]
                d_test[int(key)] = val
         test_scores.append([int(i) for i in list(d_test.values())])
-np.save('test_scores',test_scores)
+np.save('../output_data/test_scores',test_scores)
 idx_col_test = np.load(path_iQoE + '/original_database/idx_col_test.npy')
 exp_orig = np.load(path_iQoE+'/original_database/synth_exp_test.npy')
 scaled_exp_orig = np.load(path_iQoE+'/original_database/X_test_scaled.npy')
@@ -304,13 +304,13 @@ for exp in exp_orig_test:
     collect_SDNdash.append([s_vmaf_ave, s_reb_ave, a_dif_vmaf])  # without initial stall since we don't have it in our dataset
     collect_videoAtlas.append([s_vmaf_ave, s_reb / tot_dur_plus_reb, nr_stall, m, i])
 
-if not os.path.exists('features_qoes_test'):
-    os.makedirs('features_qoes_test')
-np.save('features_qoes_test/feat_vmaf', collect_sumvmaf)
-np.save('features_qoes_test/feat_va', collect_videoAtlas)
-np.save('features_qoes_test/feat_sdn', collect_SDNdash)
-np.save('features_qoes_test/feat_ftw', collect_FTW)
-np.save('features_qoes_test/feat_logbit', collect_logbit)
-np.save('features_qoes_test/feat_bit', collect_sumbit)
-np.save('features_qoes_test/feat_psnr', collect_sumpsnr)
-np.save('features_qoes_test/feat_ssim', collect_sumssim)
+if not os.path.exists('../output_data/features_qoes_test'):
+    os.makedirs('../output_data/features_qoes_test')
+np.save('../output_data/features_qoes_test/feat_vmaf', collect_sumvmaf)
+np.save('../output_data/features_qoes_test/feat_va', collect_videoAtlas)
+np.save('../output_data/features_qoes_test/feat_sdn', collect_SDNdash)
+np.save('../output_data/features_qoes_test/feat_ftw', collect_FTW)
+np.save('../output_data/features_qoes_test/feat_logbit', collect_logbit)
+np.save('../output_data/features_qoes_test/feat_bit', collect_sumbit)
+np.save('../output_data/features_qoes_test/feat_psnr', collect_sumpsnr)
+np.save('../output_data/features_qoes_test/feat_ssim', collect_sumssim)
