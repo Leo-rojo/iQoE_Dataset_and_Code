@@ -31,7 +31,7 @@ for metric in ['mae','rmse']:
             save_ave_across_users=[]
             for u in range(32):
                 for QoE_model in ['bit','logbit','psnr','ssim','vmaf','FTW','SDNdash','videoAtlas']:
-                    main_path=regr_choosen + '_results_qn_' + str(n_queries) + '_nr_ch_7_'+str(ts)
+                    main_path='input_data/'+regr_choosen + '_results_qn_' + str(n_queries) + '_nr_ch_7_'+str(ts)
                     user_data = np.load(main_path + '/' + QoE_model + '/user_' + str(
                         u) +'/ts_'+str(ts)+'/' +'shuffle_'+str(shuffle) +'/'+ metric + '/scores_for_ALstrat.npy')#[ss]  # [0] is ave of shuffle
                     save_ave_across_users.append(user_data.tolist())
@@ -39,7 +39,7 @@ for metric in ['mae','rmse']:
         save_five_ss.append(np.mean(save_ave_across_users_for_shuffle,axis=0))
         save_five_ss_stdv.append(np.std(save_ave_across_users_for_shuffle,axis=0))
 
-    main_path_for_save_fig = 'Plot_allusers_' + regr_choosen
+    main_path_for_save_fig = './'
     if not os.path.exists(main_path_for_save_fig):
         os.makedirs(main_path_for_save_fig)
     np.save(main_path_for_save_fig+'/'+metric+'values',save_five_ss)

@@ -37,8 +37,8 @@ def each_user(nr_chunks, rs, u, model, regr_choosen,n_queries,t_s):
     nr_feat = nr_chunks * 10
 
     # all features
-    synthetic_experiences = np.load('./features_generated_experiences/feat_iQoE_for_synth_exp.npy')
-    scores_synthetic_users = np.load('./synthetic_users_scores_for_generated_experiences/scaled/nrchunks_7.npy')
+    synthetic_experiences = np.load('../input_data/features_generated_experiences/feat_iQoE_for_synth_exp.npy')
+    scores_synthetic_users = np.load('../input_data/synthetic_users_scores_for_generated_experiences/scaled/nrchunks_7.npy')
 
     all_features = copy.copy(synthetic_experiences)
     users_scores = copy.copy(scores_synthetic_users)
@@ -141,7 +141,7 @@ def each_user(nr_chunks, rs, u, model, regr_choosen,n_queries,t_s):
     sco=[scores100,lcc100,rmse100,srcc100,maes100,knd100]
     conta=0
     for met in ['R2', 'lcc', 'rmse', 'srcc', 'mae', 'knd']:
-        main_path_save = regr_choosen + 'igs_results_qn_' + str(n_queries) + '_nr_ch_' + str(nr_chunks)+'_'+str(t_s)
+        main_path_save = '../output_data/'+regr_choosen + 'igs_results_qn_' + str(n_queries) + '_nr_ch_' + str(nr_chunks)+'_'+str(t_s)
         if not os.path.exists(main_path_save + '/' + model_name + '/user_' + str(u) +'/shuffle_'+str(rs)+'/'+met):
             os.makedirs(main_path_save + '/' + model_name + '/user_' + str(u) +'/ts_'+ str(t_s) +'/shuffle_'+str(rs)+'/'+met)
         np.save(main_path_save + '/' + model_name + '/user_' + str(u) +'/ts_'+ str(t_s) + '/shuffle_'+str(rs)+ '/'+met+'/scores_for_ALstrat', sco[conta]) #salvo le 5 AL strategies
@@ -162,7 +162,7 @@ if __name__ == "__main__":
                 for u in range(32):
                     for m in range(8):
                         model_name=['bit', 'logbit', 'psnr', 'ssim', 'vmaf', 'FTW', 'SDNdash', 'videoAtlas'][m]
-                        main_path = reg + 'igs_results_qn_' + str(n_queries) + '_nr_ch_' + str(nr_chunk)+'_'+str(ts)
+                        main_path = '../output_data/'+reg + 'igs_results_qn_' + str(n_queries) + '_nr_ch_' + str(nr_chunk)+'_'+str(ts)
                         if not os.path.exists(main_path + '/' + model_name + '/user_' + str(u) +'/ts_'+ str(ts) +'/shuffle_'+str(rs)):
                             comb_of_par.append((nr_chunk, rs, u, m, reg, n_queries,ts))
                             print(str(nr_chunk)+ '_' + str(rs)+'_' + str(u) +'_'+ str(m)+'_'+str(ts))

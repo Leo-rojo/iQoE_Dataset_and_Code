@@ -210,7 +210,7 @@ if __name__ == "__main__":
                             print(str(nr_chunk)+ '_' + str(rs)+'_' + str(u) +'_'+ str(m))
     print('param missing: '+ str(len(comb_of_par)))
 
-    with Pool(2) as p:
+    with Pool() as p:
         #p.map(each_user, [u for u in range(32)])
         p.starmap(each_user, comb_of_par)
     p.close()
