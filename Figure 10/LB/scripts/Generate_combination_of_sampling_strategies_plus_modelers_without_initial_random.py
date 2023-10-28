@@ -281,7 +281,7 @@ def each_user(nr_chunks, rs, u, model, regr_choosen,n_queries):
     sco=[scores100,lcc100,rmse100,srcc100,maes100,knd100]
     conta=0
     for met in ['R2', 'lcc', 'rmse', 'srcc', 'mae', 'knd']:
-        main_path_save = regr_choosen + '_results_qn_' + str(n_queries) + '_nr_ch_' + str(nr_chunks)+'_'+str(n_initial)+'no_R'
+        main_path_save = '../output_data/'+regr_choosen + '_results_qn_' + str(n_queries) + '_nr_ch_' + str(nr_chunks)+'_'+str(n_initial)+'no_R'
         if not os.path.exists(main_path_save + '/' + model_name + '/user_' + str(u) +'/shuffle_'+str(rs)+'/'+met):
             os.makedirs(main_path_save + '/' + model_name + '/user_' + str(u) +'/shuffle_'+str(rs)+'/'+met)
         np.save(main_path_save + '/' + model_name + '/user_' + str(u) + '/shuffle_'+str(rs)+ '/'+met+'/scores_for_ALstrat', sco[conta]) #salvo le 4 AL strategies
@@ -300,7 +300,7 @@ if __name__ == "__main__":
             for u in range(32):
                 for m in range(8):
                     model_name = ['bit', 'logbit', 'psnr', 'ssim', 'vmaf', 'FTW', 'SDNdash', 'videoAtlas'][m]
-                    main_path = reg + '_results_qn_' + str(n_queries) + '_nr_ch_' + str(nr_chunk) + '_' + str(1) + 'no_R'
+                    main_path = '../output_data/'+reg + '_results_qn_' + str(n_queries) + '_nr_ch_' + str(nr_chunk) + '_' + str(1) + 'no_R'
                     if not os.path.exists(main_path + '/' + model_name + '/user_' + str(u) + '/shuffle_' + str(rs)):
                         comb_of_par.append((nr_chunk, rs, u, m, reg, n_queries))
                         print(str(nr_chunk) + '_' + str(rs) + '_' + str(u) + '_' + str(m))
