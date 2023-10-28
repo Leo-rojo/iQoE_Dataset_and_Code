@@ -49,9 +49,7 @@ nr_users=group_maes.shape[0]
 
 #iqoe vs group
 for metric in ['mae','rmse']:
-    main_path_for_save_fig = 'Plot_ECDF'
-    if not os.path.exists(main_path_for_save_fig):
-        os.makedirs(main_path_for_save_fig)
+    main_path_for_save_fig = './'
     #np.save(main_path_for_save_fig + '/' + metric + 'values_ave', final_ave)
     #np.save(main_path_for_save_fig + '/' + metric + 'values_std', final_std)
     save_distributions=[]

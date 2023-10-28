@@ -23,7 +23,7 @@ os.system('python sotamodels/Test_videos_iqoe/mae_rmse_sota_models.py')
 print('step5 done')
 
 #plot ecdf
-os.system('python generate_figure_6.py')
+os.system('python generate_figure_8.py')
 os.system('python plot_legend_dashed.py')
 print('plot ecdf done')
 ##ecdf details
