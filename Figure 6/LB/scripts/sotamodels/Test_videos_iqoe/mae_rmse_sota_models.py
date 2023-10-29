@@ -6,7 +6,7 @@ from math import sqrt
 import warnings
 warnings.filterwarnings("ignore")
 #os.chdir('/Figure 6 and 8 and Table 1')
-path_iQoE='../input_data/users'
+path_iQoE='../input_data/raters'
 
 sota_folder='sotamodels\\Test_videos_iqoe'
 p1203_scores=np.load(sota_folder+'/p1203_scores.npy')

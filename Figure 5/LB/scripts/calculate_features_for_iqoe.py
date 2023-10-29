@@ -9,7 +9,7 @@ import os
 #insert path to your folder Figure 5
 
 nr_c = 4
-path_iQoE='../input_data/users'
+path_iQoE= '../input_data/raters'
 maes=[]
 rmses=[]
 scores_more_users_pers_base=[]

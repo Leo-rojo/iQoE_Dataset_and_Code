@@ -10,7 +10,7 @@ import statsmodels.api as sm
 from matplotlib import cm
 import time
 
-us_folder='../input_data/users'
+us_folder='../input_data/raters'
 
 #delete files called save_time_nonone and save_time_correct
 for fold in os.listdir(us_folder):
@@ -32,7 +32,7 @@ for fold in os.listdir(us_folder):
             with open(us_folder+'/'+fold+'\\'+"save_time_nonone.txt", "w") as f1:
                 f1.writelines(lines)
 
-#unfortunately, some users just paused the experience without pressing the button pause (or they just closed the window or they let it open for a long time without interacting)
+#unfortunately, some raters just paused the experience without pressing the button pause (or they just closed the window or they let it open for a long time without interacting)
 for fold in os.listdir(us_folder):
     if fold.split('_')[0] == 'user':
         id=fold.split('_')[1]

@@ -20,7 +20,7 @@ font_general = {'family' : 'sans-serif',
                         'size'   : 60}
 plt.rc('font', **font_general)
 
-path_iQoE='../input_data/double_users'
+path_iQoE= '../input_data/double_raters'
 #create folder points if does not exist
 colori=cm.get_cmap('tab10').colors
 

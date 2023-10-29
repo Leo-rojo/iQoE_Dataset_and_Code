@@ -110,7 +110,7 @@ for i in range(8):
         users_names.append(qmr[32*i+k]+str(k+1))
 
 ###plot mae
-#sort based on worst users for iqoep
+#sort based on worst raters for iqoep
 values_from_worst_to_best=sorted(mae_all_users[0],reverse=True)
 idx_by_difficult=[]
 for i in values_from_worst_to_best:
@@ -211,7 +211,7 @@ for metric in ['mae']:
     plt.close()
 
 ###plot rmse
-#take 26 worst users for iQoE-p ['maeb','maep','maev','maes','maesdn','maef','maeva','mael','maeiqoe','maeiqoeg']
+#take 26 worst raters for iQoE-p ['maeb','maep','maev','maes','maesdn','maef','maeva','mael','maeiqoe','maeiqoeg']
 worst26_moslogbit_std_rmse=[rmsestd_all_users[7][i] for i in idx_most_difficult]
 worst26_mosbit_rmse=[rmse_all_users[0][i] for i in idx_most_difficult]
 worst26_mosbit_std_rmse=[rmsestd_all_users[0][i] for i in idx_most_difficult]

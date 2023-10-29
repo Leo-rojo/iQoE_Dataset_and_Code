@@ -18,14 +18,13 @@ plt.rcParams['ps.fonttype'] = 42
 #fix seed for reproducibility
 rs=42
 #take mos scores from original hdtv scores
-xls = pd.ExcelFile(r"../input_data/hdtv_scores.xlsx") #user before absolute file path
-sheetX = xls.parse(0)
-mosarray=sheetX['mos'].tolist() # da splittare in 70-30
-
-#calculate min and max of all the users scores
+mosarray=np.load('../input_data/mos_scores_hdtv.npy')
+mosarray=[float(i) for i in mosarray]
+users_scores=np.load('../input_data/users_scores_hdtv.npy')
+#calculate min and max of all the raters scores
 y2=[]
 for u in range(1,33):
-    y=sheetX['User '+str(u)].tolist()
+    y=users_scores[u-1].tolist()
     y2=y2+y
     totusmin=min(y)
     totusmax=max(y)
@@ -49,7 +48,7 @@ def fit_supreg(all_features,mosscore):
 #load all videoatlas features
 all_features = np.load('../input_data/feat_videoAtlas.npy')
 
-#split train test mos and users
+#split train test mos and raters
 X_train_mos, X_test_mos, y_train_mos, y_test_mos = train_test_split(all_features, mosarray, test_size=0.3, random_state=rs)
 tr_te_each_users=[]
 for u in range(32):
@@ -57,17 +56,20 @@ for u in range(32):
     tr_te_each_users.append([X_train_u,X_test_u,y_train_u,y_test_u])
 
 
-# #train videoatlas with mos scores
-# model_trained_mos=fit_supreg(X_train_mos,y_train_mos)
-# pickle.dump(model_trained_mos, open('../output_data/model_'+ str('mosvideoatlas') + '.pkl', 'wb'))
-#
-# #train personalized videoatlas for each user
-# save_trained_model_each_users=[]
-# for u in range(32):
-#     model_trained_u=fit_supreg(tr_te_each_users[u][0], tr_te_each_users[u][2])#X_train_u,y_train_u
-#     save_trained_model_each_users.append(model_trained_u)
-#     pickle.dump(model_trained_u, open('../output_data/personal_videoatlas_users/model_user'+str(u) + '.pkl', 'wb'))
-#     print('model_user'+str(u)+'_done')
+#train videoatlas with mos scores
+model_trained_mos=fit_supreg(X_train_mos,y_train_mos)
+pickle.dump(model_trained_mos, open('../output_data/model_'+ str('mosvideoatlas') + '.pkl', 'wb'))
+
+#if personal_videoatlas_users folder doesn't exist create it
+if not os.path.exists('../output_data/personal_videoatlas_users'):
+    os.makedirs('../output_data/personal_videoatlas_users')
+#train personalized videoatlas for each user
+save_trained_model_each_users=[]
+for u in range(32):
+    model_trained_u=fit_supreg(tr_te_each_users[u][0], tr_te_each_users[u][2])#X_train_u,y_train_u
+    save_trained_model_each_users.append(model_trained_u)
+    pickle.dump(model_trained_u, open('../output_data/personal_videoatlas_users/model_user'+str(u) + '.pkl', 'wb'))
+    print('model_user'+str(u)+'_done')
 
 ########### it takes some time##################
 
@@ -92,13 +94,13 @@ for u in range(32):
 
 #####boxplots plot
 
-#considered users
+#considered raters
 user_considered=[26,8,1,29]
 
 #considered user position once sorted
 user_considered_order=[1,2,31,32]
 
-#users name for dataframe structure
+#raters name for dataframe structure
 users=[]
 k=0
 mosscores=mosmodel_us_scores[0]
@@ -125,7 +127,7 @@ for u in user_considered:
 realplot=[]
 mediansscores=[]
 for u in user_considered:
-    realplot=realplot+tr_te_each_users[u-1][3].tolist() #y_test_u for each users
+    realplot=realplot+tr_te_each_users[u-1][3].tolist() #y_test_u for each raters
     mediansscores.append(np.median(tr_te_each_users[u-1][3]))
 
 #put in dataframe e format for seaborn plot

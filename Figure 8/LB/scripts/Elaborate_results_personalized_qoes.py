@@ -195,7 +195,7 @@ for fold in os.listdir('../input_data/users'):
                     a, b, c, d = params[5][0]
                     x1, x2 = collect_FTW[exp]
                     score = a * np.exp(-(b * x1 + c) * x2) + d
-                    if score>100: #for some users some numerical error happens
+                    if score>100: #for some raters some numerical error happens
                         score=100
                     temp_score_FTW.append(score)
             elif kind_of_models == 'SDNdash':

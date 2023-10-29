@@ -11,7 +11,7 @@ maes=[]
 rmses=[]
 maes_rnd=[]
 rmses_rnd=[]
-path_iQoE='../input_data/users'
+path_iQoE= '../input_data/raters'
 for fold in os.listdir(path_iQoE):
     if fold.split('_')[0]=='user':
         identifier=fold.split('_')[-1]

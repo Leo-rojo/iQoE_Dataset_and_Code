@@ -31,7 +31,7 @@ users_scores=np.array(isc).reshape(len(isc),120)
 aveeachuserarray=np.median(isc,axis=1)
 #sort index of aveeachuserarray
 index=np.argsort(aveeachuserarray)
-#repeated users position
+#repeated raters position
 sort_median_users=np.array(identifiers)[index]
 #print identifiers and theri median
 for i in range(len(sort_median_users)):
@@ -55,13 +55,13 @@ min_iqr=np.min(iqr_ranges)
 max_iqr=np.max(iqr_ranges)
 
 
-#sorted users
+#sorted raters
 group_size=6
 right_order=index[0:group_size].tolist()+index[-group_size:].tolist()
 #sort identifiers based on right_order
 identifiers=[identifiers[i] for i in right_order]
 
-#collect users score plus mos scores in one array
+#collect raters score plus mos scores in one array
 ordered_users=[]
 for num in right_order[0:group_size]:
     ordered_users= ordered_users + users_scores[num].tolist()
@@ -69,8 +69,8 @@ ordered_users= ordered_users + mosarray.tolist()
 for num in right_order[-group_size:]:
     ordered_users= ordered_users + users_scores[num].tolist()
 
-#save users name for dataframe structure
-#save users name for dataframe structure
+#save raters name for dataframe structure
+#save raters name for dataframe structure
 users=[]
 for u in right_order:
     for i in range(120):
