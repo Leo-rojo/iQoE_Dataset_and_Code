@@ -10,6 +10,6 @@
 * Run generate_figure_16.py to generate figure 16 and run all the other scripts contained in scripts. Those files produce in output folder:
   * folders save_all_models_ave_users and save_all_models_users which contain data for the 8 baselines models considered
   * folder sota_results which contain the data for p1203 and LSTM models
-  * Run Plot_legend to generate the legend for figure 16
+* Run Plot_legend to generate the legend for figure 16
 * N.B. The scripts use parallelization which can consume a lot of memory. In order to run the scripts some hours are needed. 
 

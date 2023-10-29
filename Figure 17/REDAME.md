@@ -1,6 +1,13 @@
 ## Generate Figure 17:
-* input file: folder features_generated_experiences and synthetic_users_scores_for_generated_experiences. Both of them can be generated in Synthetic_users_implementation.
-* Run Generate_results_for_different_train_test_split_0_01.py in order to generate data for ratio of train and test splits from 0 to 0.1 and save results in new folders divided by the ratio 
-* Run Generate_results_for_different_train_test_split_01_09.py in order to generate data for ratio of train and test splits from 0.1 to 0.9 and save results in new folders divided by the ratio
-* Run plot.py to generate Figure 17 in new created folder colled tr_teSVRigs
-* Run Plot_legend.py to generate legend for Figure 17
+
+### LA
+* Input data: folders SVRigs_results_qn_99_nr_ch_7_perc that contains data for different ratio of train and test splits
+* Run generate_figure_17.py to generate figure 17
+* Run Plot_legend to generate the legend for figure 17
+
+### LB
+* Input data: folder features_generated_experiences, synthetic_users_scores_for_generated_experiences, generated in Synthetic_users_implementation
+* Run generate_figure_17.py to generate figure 17 and run all the other scripts contained in scripts. Those files produce in output folder:
+  * folders SVRigs_results_qn_99_nr_ch_7_perc that contains data for different ratio of train and test splits
+* Run Plot_legend to generate the legend for figure 17
+* N.B. The scripts use parallelization which can consume a lot of memory. In order to run the scripts some hours are needed. 
