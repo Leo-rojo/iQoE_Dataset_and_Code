@@ -5,7 +5,7 @@ from matplotlib import cm
 
 colori=cm.get_cmap('tab10').colors
 
-folder='save_all_models_ave_users/'
+folder='input_data/save_all_models_ave_users/'
 
 font_axes_titles = {'family': 'sans-serif',
                         'color':  'black',
@@ -65,10 +65,10 @@ for i in range(len(rmse_all_users)):
 
 #p1203_and_LSTM_models
 for sota in ['p1203','bilstm']:
-    sota_aves_mae.append(np.load('./sota_results/' + sota + '_scores/mae_ave.npy'))
-    sota_stds_mae.append(np.load('./sota_results/' + sota + '_scores/mae_std.npy'))
-    sota_aves_rmse.append(np.load('./sota_results/' + sota + '_scores/rmse_ave.npy'))
-    sota_stds_rmse.append(np.load('./sota_results/' + sota + '_scores/rmse_std.npy'))
+    sota_aves_mae.append(np.load('input_data/sota_results/' + sota + '_scores/mae_ave.npy'))
+    sota_stds_mae.append(np.load('input_data/sota_results/' + sota + '_scores/mae_std.npy'))
+    sota_aves_rmse.append(np.load('input_data/sota_results/' + sota + '_scores/rmse_ave.npy'))
+    sota_stds_rmse.append(np.load('input_data/sota_results/' + sota + '_scores/rmse_std.npy'))
 
 #calculate the average of sota_ave_mae for both arrays
 sota_ave_mae=np.mean(sota_aves_mae,axis=1)

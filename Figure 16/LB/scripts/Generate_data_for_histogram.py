@@ -21,7 +21,7 @@ warnings.filterwarnings("ignore")
 
 
 #take all individual user scores saved previously
-users_scores=np.load('./synthetic_users_scores_for_generated_experiences/scaled/nrchunks_7.npy')
+users_scores=np.load('../input_data/synthetic_users_scores_for_generated_experiences/scaled/nrchunks_7.npy')
 users_scores=users_scores.reshape(256,1000)
 
 #take mos scores
@@ -75,25 +75,25 @@ def random_greedy_sampling_input_output(regressor, X): #it is iGS
     return query_idx, X[query_idx]
 
 #load saved IFs for each model and for each generated experience
-features_folder='features_generated_experiences'
+features_folder='../input_data/features_generated_experiences'
 #load all bitrate features
-all_features_bit = np.load('./'+features_folder+'/feat_bit_for_synth_exp.npy')
+all_features_bit = np.load(features_folder+'/feat_bit_for_synth_exp.npy')
 #load all bitrate features
-all_features_psnr = np.load('./'+features_folder+'/feat_psnr_for_synth_exp.npy')
+all_features_psnr = np.load(features_folder+'/feat_psnr_for_synth_exp.npy')
 #load all bitrate features
-all_features_ssim = np.load('./'+features_folder+'/feat_ssim_for_synth_exp.npy')
+all_features_ssim = np.load(features_folder+'/feat_ssim_for_synth_exp.npy')
 #load all bitrate features
-all_features_vmaf = np.load('./'+features_folder+'/feat_vmaf_for_synth_exp.npy')
+all_features_vmaf = np.load(features_folder+'/feat_vmaf_for_synth_exp.npy')
 #load all bitrate features
-all_features_sdn = np.load('./'+features_folder+'/feat_sdn_for_synth_exp.npy')
+all_features_sdn = np.load(features_folder+'/feat_sdn_for_synth_exp.npy')
 #load all bitrate features
-all_features_logbit = np.load('./'+features_folder+'/feat_logbit_for_synth_exp.npy')
+all_features_logbit = np.load(features_folder+'/feat_logbit_for_synth_exp.npy')
 #load all bitrate features
-all_features_ftw = np.load('./'+features_folder+'/feat_ftw_for_synth_exp.npy')
+all_features_ftw = np.load(features_folder+'/feat_ftw_for_synth_exp.npy')
 #load all videoatlas features
-all_features_va = np.load('./'+features_folder+'/feat_va_for_synth_exp.npy')
+all_features_va = np.load(features_folder+'/feat_va_for_synth_exp.npy')
 #load all features iQoE
-all_features_iQoE = np.load('./'+features_folder+'/feat_iQoE_for_synth_exp.npy')
+all_features_iQoE = np.load(features_folder+'/feat_iQoE_for_synth_exp.npy')
 
 def eachuser(user,rs_par):
 #for user in range(256):
@@ -335,7 +335,9 @@ def eachuser(user,rs_par):
     rmseiqoe.append(rmses_gsio[-1])
 
     #save all
-    fold='save_all_models_users/'
+    fold='../output_data/save_all_models_users/'
+    if not os.path.exists(fold):
+        os.makedirs(fold)
     np.save(fold+'maeb_'+str(user)+'_'+str(rs)+'.npy', maeb)
     np.save(fold+'maep_'+str(user)+'_'+str(rs)+'.npy', maep)
     np.save(fold+'maev_'+str(user)+'_'+str(rs)+'.npy', maev)
@@ -362,20 +364,20 @@ def eachuser(user,rs_par):
 
 if __name__ == "__main__":
     from multiprocessing import Pool
-    fold = 'save_all_models_users/'
+    fold = '../output_data/save_all_models_users/'
     comb_of_par = []
     for user in range(256):
         for rs in [42, 13, 70, 34, 104]:
             if not os.path.exists(fold+'rmseiqoeg_'+str(user)+'_'+str(rs)+'.npy'):
                 comb_of_par.append((user, rs))
     print('params nr_'+str(len(comb_of_par)))
-    with Pool() as p:
+    with Pool(2) as p:
         #p.map(each_user, [u for u in range(32)])
         p.starmap(eachuser, comb_of_par)
     p.close()
 
-    fold = 'save_all_models_users/'
-    save_fold='save_all_models_ave_users/'
+    fold = '../output_data/save_all_models_users/'
+    save_fold='../output_data/save_all_models_ave_users/'
     #mae
     for model in ['maeb','maep','maev','maes','maesdn','maef','maeva','mael','maeiqoe','maeiqoeg']:
         m=[]
