@@ -15,7 +15,7 @@ for metric in ['mae','rmse']:
             save_ave_across_users=[]
             for u in range(32):
                 for QoE_model in ['bit','logbit','psnr','ssim','vmaf','FTW','SDNdash','videoAtlas']:
-                    main_path= regr_choosen + '_results_qn_' + str(n_queries) + '_nr_ch_7_1'+'no_R'
+                    main_path= 'input_data/'+regr_choosen + '_results_qn_' + str(n_queries) + '_nr_ch_7_1'+'no_R'
                     user_data = np.load(foldforplot + '/' + main_path + '/' + QoE_model + '/user_' + str(
                         u) + '/' +'shuffle_'+str(shuffle) +'/'+ metric + '/scores_for_ALstrat.npy')[ss]  # [0] is ave of shuffle
                     save_ave_across_users.append(user_data.tolist())
@@ -38,7 +38,7 @@ for metric in ['mae', 'rmse']:
             save_ave_across_users = []
             for u in range(32):
                 for QoE_model in ['bit', 'logbit', 'psnr', 'ssim', 'vmaf', 'FTW', 'SDNdash', 'videoAtlas']:
-                    main_path = regr_choosen + '_results_qn_' + str(n_queries) + '_nr_ch_7_1'+ 'no_R'
+                    main_path = 'input_data/'+regr_choosen + '_results_qn_' + str(n_queries) + '_nr_ch_7_1'+ 'no_R'
                     user_data = np.load(foldforplot + '/' + main_path + '/' + QoE_model + '/user_' + str(
                         u) + '/' + 'shuffle_' + str(shuffle) + '/' + metric + '/scores_for_ALstrat.npy')[
                         ss]  # [0] is ave of shuffle
@@ -62,7 +62,7 @@ for metric in ['mae', 'rmse']:
             save_ave_across_users = []
             for u in range(32):
                 for QoE_model in ['bit', 'logbit', 'psnr', 'ssim', 'vmaf', 'FTW', 'SDNdash', 'videoAtlas']:
-                    main_path = regr_choosen + '_results_qn_' + str(n_queries) + '_nr_ch_7_1' + 'no_R'
+                    main_path = 'input_data/'+regr_choosen + '_results_qn_' + str(n_queries) + '_nr_ch_7_1' + 'no_R'
                     user_data = np.load(foldforplot + '/' + main_path + '/' + QoE_model + '/user_' + str(
                         u) + '/' + 'shuffle_' + str(shuffle) + '/' + metric + '/scores_for_ALstrat.npy')[
                         ss]  # [0] is ave of shuffle
@@ -86,7 +86,7 @@ for metric in ['mae', 'rmse']:
             save_ave_across_users = []
             for u in range(32):
                 for QoE_model in ['bit', 'logbit', 'psnr', 'ssim', 'vmaf', 'FTW', 'SDNdash', 'videoAtlas']:
-                    main_path = regr_choosen + '_results_qn_' + str(n_queries) + '_nr_ch_7_1' + 'no_R'
+                    main_path = 'input_data/'+regr_choosen + '_results_qn_' + str(n_queries) + '_nr_ch_7_1' + 'no_R'
                     user_data = np.load(foldforplot + '/' + main_path + '/' + QoE_model + '/user_' + str(
                         u) + '/' + 'shuffle_' + str(shuffle) + '/' + metric + '/scores_for_ALstrat.npy')[
                         ss]  # [0] is ave of shuffle
@@ -110,7 +110,7 @@ for metric in ['mae', 'rmse']:
             save_ave_across_users = []
             for u in range(32):
                 for QoE_model in ['bit', 'logbit', 'psnr', 'ssim', 'vmaf', 'FTW', 'SDNdash', 'videoAtlas']:
-                    main_path = regr_choosen + '_results_qn_' + str(n_queries) + '_nr_ch_7_1' + 'R'
+                    main_path = 'input_data/'+regr_choosen + '_results_qn_' + str(n_queries) + '_nr_ch_7_1' + 'R'
                     user_data = np.load(foldforplot + '/' + main_path + '/' + QoE_model + '/user_' + str(
                         u) + '/' + 'shuffle_' + str(shuffle) + '/' + metric + '/scores_for_ALstrat.npy')[
                         ss]  # [0] is ave of shuffle
@@ -134,7 +134,7 @@ for metric in ['mae','rmse']:
             save_ave_across_users=[]
             for u in range(32):
                 for QoE_model in ['bit','logbit','psnr','ssim','vmaf','FTW','SDNdash','videoAtlas']:
-                    main_path= regr_choosen + '_results_qn_' + str(n_queries) + '_nr_ch_7_1'+'R'
+                    main_path= 'input_data/'+regr_choosen + '_results_qn_' + str(n_queries) + '_nr_ch_7_1'+'R'
                     user_data = np.load(foldforplot + '/' + main_path + '/' + QoE_model + '/user_' + str(
                         u) + '/' +'shuffle_'+str(shuffle) +'/'+ metric + '/scores_for_ALstrat.npy')[ss]  # [0] is ave of shuffle
                     save_ave_across_users.append(user_data.tolist())
