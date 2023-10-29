@@ -31,8 +31,8 @@ def each_user(nr_chunks, rs, u, model, regr_choosen,n_queries):
     nr_feat = nr_chunks * 10
 
     # all features
-    synthetic_experiences = np.load('./features_generated_experiences/feat_iQoE_for_synth_exp.npy')
-    scores_synthetic_users = np.load('./synthetic_users_scores_for_generated_experiences/scaled/nrchunks_7.npy')
+    synthetic_experiences = np.load('../input_data/features_generated_experiences/feat_iQoE_for_synth_exp.npy')
+    scores_synthetic_users = np.load('../input_data/synthetic_users_scores_for_generated_experiences/scaled/nrchunks_7.npy')
 
     all_features = copy.copy(synthetic_experiences)
     users_scores = copy.copy(scores_synthetic_users)
@@ -65,7 +65,7 @@ def each_user(nr_chunks, rs, u, model, regr_choosen,n_queries):
         y_training=y_init_training.reshape(-1, 1).flatten()
     )
     end = time.time()
-    pkl_filename = './mq/'+str(u)+model_name+'m_q' + 'initial'+'.pkl'
+    pkl_filename = '../output_data/mq/'+str(u)+model_name+'m_q' + 'initial'+'.pkl'
     with open(pkl_filename, 'wb') as file:
         pickle.dump(regressor_gsio.estimator, file)
     #regressor_gsio.estimator.save_model('./mq/'+str(u)+model_name+'m_q' + 'initial'+'.json')
@@ -93,11 +93,11 @@ def each_user(nr_chunks, rs, u, model, regr_choosen,n_queries):
         X_pool_gsio, y_pool_gsio = np.delete(X_pool_gsio, query_idx, axis=0), np.delete(y_pool_gsio, query_idx)
         end=time.time()
         save_time_queries.append(end-start)
-        pkl_filename = './mq/'+str(u)+model_name+'m_q' + str(idx)+'.pkl'
+        pkl_filename = '../output_data/mq/'+str(u)+model_name+'m_q' + str(idx)+'.pkl'
         with open(pkl_filename, 'wb') as file:
             pickle.dump(regressor_gsio.estimator, file)
         count_queries+=1
     #salve nelle folder shuffle
     # folders for metrics
     print('end ' + str(nr_chunks)+'_'+str(rs)+'_'+str(u)+'_'+str(model))
-    np.save('./time_over/time_overhead_'+str(u)+model_name,save_time_queries)
+    np.save('../output_data/time_over/time_overhead_'+str(u)+model_name,save_time_queries)
