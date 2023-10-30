@@ -8,12 +8,13 @@ import os
 #insert path to your folder
 
 #take mos scores
-mosarray=np.load('../input_data/mos_scores_hdtv.npy')
-mosarray=[float(i) for i in mosarray]
+xls = pd.ExcelFile(r"../input_data/hdtv_scores.xlsx") #use r before absolute file path
+sheetX = xls.parse(0)
+mosarray=sheetX['mos'].tolist()
 
 #takes user scores and order them based on hightest discrepancy
 collect_all=[]
-users_scores=np.load('../input_data/users_scores_hdtv.npy')
+users_scores=np.load('../input_data/raters_scores_hdtv.npy')
 medians=[]
 #sort users_score by median
 for i in range(32):
@@ -25,7 +26,7 @@ sorted_users=np.argsort(medians)
 
 right_order=[i+1 for i in sorted_users]
 
-#sort raters scores
+#sort users scores
 ordered_users=[]
 for num in right_order:
     ordered_users.append(users_scores[num - 1].tolist())

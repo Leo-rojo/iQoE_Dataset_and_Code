@@ -37,3 +37,6 @@ For running experiments that involve creation of videos and calculation of relat
 
 ### QP values
 For calculation of QP values we used ffmpeg-debug-qp (https://github.com/slhck/ffmpeg-debug-qp).
+
+### Terminology
+We use the terms 'user' and 'rater' interchangeably in the names of folders, filenames, and textual documents.

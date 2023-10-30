@@ -15,10 +15,11 @@ plt.rcParams['pdf.fonttype'] = 42
 plt.rcParams['ps.fonttype'] = 42
 
 #collect mos and individual scores
-mosarray=np.load('../input_data/mos_scores_hdtv.npy')
-mosarray=[float(i) for i in mosarray]
+xls = pd.ExcelFile("../input_data/hdtv_scores.xlsx") #use r before absolute file path
+sheetX = xls.parse(0)
+mosarray=sheetX['mos'].tolist()
 collect_all=[]
-users_scores=np.load('../input_data/users_scores_hdtv.npy')
+users_scores=np.load('../input_data/raters_scores_hdtv.npy')
 medians=[]
 #sort users_score by median
 for i in range(32):
@@ -27,8 +28,8 @@ for i in range(32):
 totusmin=min(medians)
 totusmax=max(medians)
 sorted_users=np.argsort(medians)
-#print values for the 4 atypical raters
-print('atypical raters median')
+#print values for the 4 atypical users
+print('atypical users median')
 print(medians[sorted_users[0]])
 print(medians[sorted_users[1]])
 print(medians[sorted_users[-2]])
@@ -37,13 +38,13 @@ print('average user median',np.median(mosarray))
 
 right_order=[i+1 for i in sorted_users]
 
-#collect raters score plus mos scores in one array
+#collect users score plus mos scores in one array
 ordered_users=[]
 for num in right_order:
     ordered_users= ordered_users + users_scores[num - 1].tolist()
 ordered_users= ordered_users + mosarray
 
-#save raters name for dataframe structure
+#save users name for dataframe structure
 users=[]
 for u in right_order:
     for i in range(450):

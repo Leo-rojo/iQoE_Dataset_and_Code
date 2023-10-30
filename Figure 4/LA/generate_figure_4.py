@@ -20,8 +20,8 @@ font_general = {'family' : 'sans-serif',
                         'size'   : 60}
 plt.rc('font', **font_general)
 
-mae_all=np.load('output_data/save_mae_importance_for_all_hdtv.npy')
-rmse_all=np.load('output_data/save_rmse_importance_for_all_hdtv.npy')
+mae_all=np.load('input_data/save_mae_importance_for_all_hdtv.npy')
+rmse_all=np.load('input_data/save_rmse_importance_for_all_hdtv.npy')
 
 metric='mae'
 legends = ['I', 'R', 'B', 'S', 'W', 'H', 'IS', 'P', 'SS', 'V']
@@ -48,7 +48,7 @@ plt.xlabel('Shuffled influence factor', fontdict=font_axes_titles)
 ax.set_ylim([0, 3])
 plt.savefig('importance_hdtv_mae_mean_atypical.pdf', bbox_inches='tight')
 plt.close()
-#write mean_importances in csv for atypical raters for each legend
+#write mean_importances in csv for atypical users for each legend
 df = pd.DataFrame(mean_importances, index=legends, columns=['mean_importances'])
 df.to_csv('importance_hdtv_mae_mean_atypical.csv', sep=',', encoding='utf-8')
 
@@ -81,6 +81,6 @@ ax.set_ylim([0, 3])
 plt.savefig('importance_hdtv_rmse_mean_atypical.pdf', bbox_inches='tight')
 plt.close()
 
-#write mean_importances in csv for atypical raters for each legend
+#write mean_importances in csv for atypical users for each legend
 df = pd.DataFrame(mean_importances, index=legends, columns=['mean_importances'])
 df.to_csv('importance_hdtv_rmse_mean_atypical.csv', sep=',', encoding='utf-8')
