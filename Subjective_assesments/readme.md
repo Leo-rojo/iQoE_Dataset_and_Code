@@ -1,9 +1,9 @@
 ## Subjective assessments:
-* Generation of videos:
-  * in video_generations folder follow the readme.md file in Video_preparation to generate video chunks for the different rungs of the encoding ladder.
-  * in video_generations folder follow the readme.md file in Experience_pool_generation to generate the video pool of impaired videos.
-* Web site creation:
-  * in iQoE_web folder follow the readme.md file in to create the web site for running iQoE in real scenario.
-  * in the real website implementation we implemented a mechanism that return a unique code to be used by Microworkers workers to verify that they completed the assessment. This mechanism is not present in this implementation.
+* In folder video_generation is possible to generate videos:
+  1. Video_preparation: follow the readme.md file to generate video chunks for the different rungs of the encoding ladder.
+  2. Experience_pool_generation: follow the readme.md file to generate the experience set.
+* In iQoE_web there is the code for developing the web site for subjective assessments, more detail in the readme.md file
 
-You need to have FFmpeg installed in your computer to generate the videos.
+#### info
+1. You need to have FFmpeg installed in your computer to generate the videos.
+2. In the real website implementation we implemented a mechanism that return a unique code to be used by Microworkers workers to verify that they completed the assessment. This mechanism is not present in this implementation.

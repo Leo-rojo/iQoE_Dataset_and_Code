@@ -1,5 +1,6 @@
 import os
-
+if not os.path.exists('./chunks_orig'):
+    os.makedirs('./chunks_orig')
 ms_chunks=[2000]#[10000,4000,2000]
 lista=''
 for ms_chunk in ms_chunks:

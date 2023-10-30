@@ -4,7 +4,7 @@ import shutil
 from pydub.utils import mediainfo
 from ffmpeg_quality_metrics import FfmpegQualityMetrics as ffqm
 import multiprocessing
-vmaf_4k_model='./ffmpeg-quality-metrics-master/ffmpeg_quality_metrics/vmaf_models/vmaf_4k_v0.6.1.json'
+vmaf_4k_model=''#insert path to file vmaf_4k_v0.6.1.json'
 
 def calc_feat(folder_distorted_chunk):
     folder=folder_distorted_chunk.split('_')[0]+'_'

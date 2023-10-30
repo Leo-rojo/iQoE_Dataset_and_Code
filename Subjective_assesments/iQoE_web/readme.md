@@ -1,6 +1,6 @@
 ## iQoE web application
 * Structure:
-  * cssandjsandvideos should contain all the css, js, and videos files produced in the previous steps. A copy of the videofiles used can be downloaded from: https://drive.google.com/file/d/10PY3e37GCDD5DIgyq6Xmafr921MQkKqS/view?usp=sharing
+  * cssandjsandvideos should contain all the css, js, and videos files produced in the previous steps. A copy of the videofiles used can be downloaded from: https://doi.org/10.6084/m9.figshare.24460081.v1
   * templates should contain all the html files
   * original_database contains useful files for dividing the video pool of 1000 videos into train and test set and from train select randomly videos for baselines models
 
