@@ -12,7 +12,7 @@ nr_of_exp=1000
 nr_c=7
 
 
-synthetic_experiences=np.load('./experiences_with_features.npy')
+synthetic_experiences=np.load('../input_data/experiences_with_features.npy')
 #modifiy bitrate form bit/s to kbit/s like in W4
 for i in range(len(synthetic_experiences)):
     for k in range(len(synthetic_experiences[0])):
@@ -36,8 +36,9 @@ for i in range(nr_of_exp):
     for c in range(nr_c):
         ch=ch + synthetic_experiences[random_trace][random_chunk+c].tolist()
     list_of_exp.append(ch)
-
-np.save('./features_generated_experiences/'+'feat_iQoE_for_synth_exp',list_of_exp)
+if not os.path.exists('../output_data/features_generated_experiences'):
+    os.makedirs('../output_data/features_generated_experiences')
+np.save('../output_data/features_generated_experiences/'+'feat_iQoE_for_synth_exp',list_of_exp)
 
 #calculate min bit
 all_bitrates=[]
@@ -141,19 +142,19 @@ for exp in list_of_exp: #remember is long as two chunk all togheter
     collect_SDNdash.append([s_vmaf_ave, s_reb_ave, a_dif_vmaf])  # without initial stall since we don't have it in our dataset
     collect_videoAtlas.append([s_vmaf_ave, s_reb / tot_dur_plus_reb, nr_stall, m, i])
 
-np.save('feat_bit_for_synth_exp',collect_sumbit)
-np.save('feat_psnr_for_synth_exp',collect_sumpsnr)
-np.save('feat_ssim_for_synth_exp',collect_sumssim)
-np.save('feat_vmaf_for_synth_exp',collect_sumvmaf)
-np.save('feat_logbit_for_synth_exp',collect_logbit)
-np.save('feat_ftw_for_synth_exp',collect_FTW)
-np.save('feat_sdn_for_synth_exp',collect_SDNdash)
-np.save('feat_va_for_synth_exp',collect_videoAtlas)
+np.save('../output_data/feat_bit_for_synth_exp',collect_sumbit)
+np.save('../output_data/feat_psnr_for_synth_exp',collect_sumpsnr)
+np.save('../output_data/feat_ssim_for_synth_exp',collect_sumssim)
+np.save('../output_data/feat_vmaf_for_synth_exp',collect_sumvmaf)
+np.save('../output_data/feat_logbit_for_synth_exp',collect_logbit)
+np.save('../output_data/feat_ftw_for_synth_exp',collect_FTW)
+np.save('../output_data/feat_sdn_for_synth_exp',collect_SDNdash)
+np.save('../output_data/feat_va_for_synth_exp',collect_videoAtlas)
 
 #give scores
 models=['bit','logbit','psnr','ssim','vmaf','FTW','SDNdash','videoAtlas']
-models_folder='Fitted_models_without_logistic'
-params_sigmoid=np.load('./save_param_sigmoids/params_sigmoid.npy')
+models_folder='../output_data/Fitted_models_without_logistic'
+params_sigmoid=np.load('../output_data/save_param_sigmoids/params_sigmoid.npy')
 
 #load models (which means parameters)
 all_synthetic_users=[]
@@ -161,10 +162,10 @@ for u in range(32):
     synthetic_user_models=[]
     for model in models:
         if model=='videoAtlas':
-            with open('./'+models_folder+'/organized_by_users/user_'+str(u)+'/model_videoAtlas.pkl', 'rb') as handle:
+            with open(models_folder+'/organized_by_users/user_'+str(u)+'/model_videoAtlas.pkl', 'rb') as handle:
                 synthetic_user_models.append(pickle.load(handle))
         else:
-            synthetic_user_models.append(np.load('./'+models_folder+'/organized_by_users/user_'+str(u)+'/model_'+model+'.npy',allow_pickle=True))
+            synthetic_user_models.append(np.load(models_folder+'/organized_by_users/user_'+str(u)+'/model_'+model+'.npy',allow_pickle=True))
     all_synthetic_users.append(synthetic_user_models)
 #['bit','logbit','psnr','ssim','vmaf','FTW','SDNdash','videoAtlas']
 
@@ -250,54 +251,10 @@ for u in range(32):
     #FTW metti in scaled anche se non scaled
     scores_by_models.append(scores_by_users)
     scores_by_models_not_scaled.append(scores_by_users_not_scaled)
+if not os.path.exists('../output_data/synthetic_users_scores_for_generated_experiences/scaled'):
+    os.makedirs('../output_data/synthetic_users_scores_for_generated_experiences/scaled')
+if not os.path.exists('../output_data/synthetic_users_scores_for_generated_experiences/not_scaled'):
+    os.makedirs('../output_data/synthetic_users_scores_for_generated_experiences/not_scaled')
+np.save('../output_data/synthetic_users_scores_for_generated_experiences/scaled/nrchunks_'+str(nr_c),scores_by_models)
+np.save('../output_data/synthetic_users_scores_for_generated_experiences/not_scaled/nrchunks_'+str(nr_c),scores_by_models_not_scaled)
 
-np.save('./synthetic_users_scores_for_generated_experiences/scaled/nrchunks_'+str(nr_c),scores_by_models)
-np.save('./synthetic_users_scores_for_generated_experiences/not_scaled/nrchunks_'+str(nr_c),scores_by_models_not_scaled)
-
-#plot
-font_axes_titles = {'family': 'sans-serif',
-        'color':  'black',
-        'weight': 'bold',
-        'size': 25,
-        }
-font_title = {'family': 'sans-serif',
-        'color':  'black',
-        'weight': 'bold',
-        'size': 40,
-        }
-font_general = {'family' : 'sans-serif',
-        'weight' : 'normal',
-        'size'   : 30}
-plt.rc('font', **font_general)
-
-#plot scaled
-for m in range(8):
-    fig=plt.figure('scores by model'+models[m],figsize=(19.2,10.8), dpi=100)
-    for u in range(32):
-        my_scores=scores_by_models[u][m]
-    #plt.plot(range(1,451),user_score,'o')
-    #plt.plot(user_score)
-        ecdf = sm.distributions.ECDF(my_scores.reshape(1000))
-        plt.step(ecdf.x, ecdf.y,label='user_'+str(u))
-    plt.xlabel('score',fontdict=font_axes_titles)#fontsize=18)
-    plt.ylabel('ECDF',fontdict=font_axes_titles)#fontsize=18)
-    plt.title('synthetic raters scores distribution '+models[m],fontdict=font_title)
-    plt.legend(loc='upper left', ncol=4, fontsize=10)
-    plt.savefig('./plots/yes_scaled_out/'+models[m]+'_nr_chunk'+str(nr_c),bbox_inches='tight')
-    plt.close(fig)
-
-#plt not scaled
-for m in range(8):
-    fig=plt.figure('scores by model'+models[m],figsize=(19.2,10.8), dpi=100)
-    for u in range(32):
-        my_scores=scores_by_models_not_scaled[u][m]
-    #plt.plot(range(1,451),user_score,'o')
-    #plt.plot(user_score)
-        ecdf = sm.distributions.ECDF(my_scores.reshape(1000))
-        plt.step(ecdf.x, ecdf.y,label='user_'+str(u))
-    plt.xlabel('score',fontdict=font_axes_titles)#fontsize=18)
-    plt.ylabel('ECDF',fontdict=font_axes_titles)#fontsize=18)
-    plt.title('synthetic raters scores distribution '+models[m],fontdict=font_title)
-    plt.legend(loc='upper left', ncol=4, fontsize=10)
-    plt.savefig('./plots/no_scaled_out/'+models[m]+'_nr_chunk'+str(nr_c),bbox_inches='tight')
-    plt.close(fig)

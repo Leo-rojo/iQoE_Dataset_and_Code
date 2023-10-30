@@ -1,7 +1,7 @@
 import numpy as np
 
 #collect all features and scores
-all_features=np.load('../features_and_scores_WIV_hdtv_users/all_feat_hdtv.npy')
+all_features=np.load('../output_data/all_feat_hdtv.npy')
 
 #calculate the minimum bitrate possible in WIV ladder
 all_bitrates=[]
@@ -106,11 +106,11 @@ for exp in all_features:
     collect_videoAtlas.append([s_vmaf_ave,s_reb/tot_dur_plus_reb,nr_stall,m,i])
 
 #save data
-np.save('feat_bit',collect_sumbit)
-np.save('feat_psnr',collect_sumpsnr)
-np.save('feat_ssim',collect_sumssim)
-np.save('feat_vmaf',collect_sumvmaf)
-np.save('feat_logbit',collect_logbit)
-np.save('feat_FTW',collect_FTW)
-np.save('feat_SDNdash',collect_SDNdash)
-np.save('feat_videoAtlas',collect_videoAtlas)
+np.save('../output_data/feat_bit',collect_sumbit)
+np.save('../output_data/feat_psnr',collect_sumpsnr)
+np.save('../output_data/feat_ssim',collect_sumssim)
+np.save('../output_data/feat_vmaf',collect_sumvmaf)
+np.save('../output_data/feat_logbit',collect_logbit)
+np.save('../output_data/feat_FTW',collect_FTW)
+np.save('../output_data/feat_SDNdash',collect_SDNdash)
+np.save('../output_data/feat_videoAtlas',collect_videoAtlas)

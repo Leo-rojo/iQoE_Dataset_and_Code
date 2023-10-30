@@ -7,7 +7,7 @@ from sklearn.model_selection import GridSearchCV
 import pickle
 import os
 collect_all=[]
-users_scores=np.load('./users_scores_hdtv.npy')
+users_scores=np.load('../output_data/users_scores_hdtv.npy')
 l=['bit','logbit','psnr','ssim','vmaf','FTW','SDNdash','videoAtlas']
 
 def fit_linear(all_features,users_scores,u):
@@ -48,22 +48,22 @@ def fit_supreg(all_features,users_scores,u):
 
 
 for user in range(32):
-    if not os.path.exists('./Fitted_models_without_logistic/organized_by_users/user_'+str(user)):
-        os.makedirs('./Fitted_models_without_logistic/organized_by_users/user_'+str(user))
+    if not os.path.exists('../output_data/Fitted_models_without_logistic/organized_by_users/user_'+str(user)):
+        os.makedirs('../output_data/Fitted_models_without_logistic/organized_by_users/user_'+str(user))
 for i in range(len(l)):
-    if not os.path.exists('./Fitted_models_without_logistic/organized_by_type/models_'+l[i]):
-        os.makedirs('./Fitted_models_without_logistic/organized_by_type/models_'+l[i])
+    if not os.path.exists('../output_data/Fitted_models_without_logistic/organized_by_type/models_'+l[i]):
+        os.makedirs('../output_data/Fitted_models_without_logistic/organized_by_type/models_'+l[i])
 
 for i in l:
     collect_temp = []
-    all_features=np.load('./features_for_synthetic_user_fitting/feat_'+i+'.npy')
+    all_features=np.load('../output_data/feat_'+i+'.npy')
 
     if i=='FTW':
         for u in range(len(users_scores)):
             collect_temp.append(fit_nonlinear((all_features[:,0],all_features[:,1]), users_scores, u))
     elif i=='videoAtlas':
         for u in range(len(users_scores)):
-            pickle.dump(fit_supreg(all_features,users_scores,u), open('./Fitted_models_without_logistic/organized_by_users/user_' + str(u)+'/model_'+ str(i) + '.pkl', 'wb'))
+            pickle.dump(fit_supreg(all_features,users_scores,u), open('../output_data/Fitted_models_without_logistic/organized_by_users/user_' + str(u)+'/model_'+ str(i) + '.pkl', 'wb'))
             collect_temp.append('videoAtlas_user' + str(u))
     else:
         for u in range(len(users_scores)):
@@ -75,12 +75,12 @@ for i in l:
 
 #save models for type
 for i in range(len(l)):
-    np.save('./Fitted_models_without_logistic/organized_by_type/models_'+l[i],collect_all[i])
+    np.save('../output_data/Fitted_models_without_logistic/organized_by_type/models_'+l[i],collect_all[i])
 
 #save models for each raters
 for user in range(32):
     for i in range(len(l)):
-        np.save('./Fitted_models_without_logistic/organized_by_users/user_' + str(user)+'/model_'+str(l[i]),collect_all[i][user])
+        np.save('../output_data/Fitted_models_without_logistic/organized_by_users/user_' + str(user)+'/model_'+str(l[i]),collect_all[i][user])
 
 print('done')
 

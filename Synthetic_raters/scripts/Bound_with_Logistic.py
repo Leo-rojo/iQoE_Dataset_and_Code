@@ -7,15 +7,15 @@ from sklearn.model_selection import GridSearchCV
 import pickle
 import os
 
-models_folder='Fitted_models_without_logistic'
-real_scores=np.load('./users_scores_hdtv.npy')
+models_folder='../output_data/Fitted_models_without_logistic'
+real_scores=np.load('../output_data/users_scores_hdtv.npy')
 models=['bit','logbit','psnr','ssim','vmaf','FTW','SDNdash','videoAtlas']
 
 #collect all features w4 for each model
 all_features=[]
 for i in models:
     collect_temp = []
-    all_features.append(np.load('./features_for_synthetic_user_fitting/feat_'+i+'.npy'))
+    all_features.append(np.load('../output_data/feat_'+i+'.npy'))
 
 #def sigmoid_scaling(xdata,ydata):  #xdata are the output of my model, ydata are real ones
 def sigmoid_scaling(xdata,ydata,u):
@@ -36,10 +36,10 @@ for u in range(32):
     synthetic_user_models=[]
     for model in models:
         if model=='videoAtlas':
-            with open('./'+models_folder+'/organized_by_users/user_'+str(u)+'/model_videoAtlas.pkl', 'rb') as handle:
+            with open(models_folder+'/organized_by_users/user_'+str(u)+'/model_videoAtlas.pkl', 'rb') as handle:
                 synthetic_user_models.append(pickle.load(handle))
         else:
-            synthetic_user_models.append(np.load('./'+models_folder+'/organized_by_users/user_'+str(u)+'/model_'+model+'.npy',allow_pickle=True))
+            synthetic_user_models.append(np.load(models_folder+'/organized_by_users/user_'+str(u)+'/model_'+model+'.npy',allow_pickle=True))
     all_synthetic_users.append(synthetic_user_models)
 
 
@@ -135,7 +135,7 @@ for u in range(32):
             scores_by_users_scaled_sigmoid.append(qoe_scaled)  # min max scalere here but it needs all the scores given in order to map them.
             params_sigmoid_user.append([alpha, beta])
         elif kind_of_models== 'videoAtlas':
-            with open('./' + models_folder + '/organized_by_users/user_' + str(u) + '/model_videoAtlas.pkl','rb') as handle:
+            with open(models_folder + '/organized_by_users/user_' + str(u) + '/model_videoAtlas.pkl','rb') as handle:
                 pickled_atlas=pickle.load(handle)
             videoAtlasregressor=pickled_atlas #0 there is the mdoel,
             score = videoAtlasregressor.predict(all_features[7])
@@ -149,5 +149,7 @@ for u in range(32):
     all_scores_no_scaled.append(scores_by_users_not_scaled)
     all_scores_sigmoid_scaled.append(scores_by_users_scaled_sigmoid)
     params_sigmoid.append(params_sigmoid_user)
-np.save('./save_param_sigmoids/params_sigmoid.npy',params_sigmoid)
+if not os.path.exists('../output_data/save_param_sigmoids'):
+    os.makedirs('../output_data/save_param_sigmoids')
+np.save('../output_data/save_param_sigmoids/params_sigmoid.npy',params_sigmoid)
 print('done')
