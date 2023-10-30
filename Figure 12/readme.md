@@ -6,7 +6,7 @@
 * Run Plot_legend to generate the legend for figure 12
 
 ### LB
-* Input data: folder features_generated_experiences and synthetic_raters_scores_for_generated_experiences. Both of them can be generated in Synthetic_raters_implementation.
+* Input data: folder features_generated_experiences and synthetic_raters_scores_for_generated_experiences. Both of them can be generated in Synthetic_raters.
 * Run generate_figure_12.py to generate figure 12 and run all the other scripts contained in scripts. Those files produce in output folder:
   * folders SVRigs_results_qn_250_nr_ch_7_h which are folders containing the results for different values of h parameter for iQoE method
 * Run Plot_legend to generate the legend for figure 12

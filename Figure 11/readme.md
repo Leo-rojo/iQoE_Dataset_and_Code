@@ -6,7 +6,7 @@
 * Run Plot_legend to generate the legend for figure 11
 
 ### LB
-* Input data: folder features_generated_experiences and synthetic_raters_scores_for_generated_experiences. Both of them can be generated in Synthetic_raters_implementation.
+* Input data: folder features_generated_experiences and synthetic_raters_scores_for_generated_experiences. Both of them can be generated in Synthetic_raters.
 * Run generate_figure_11.py to generate figure 11 and run all the other scripts contained in scripts. Those files produce in output folder:
   * modeler_results_qn_250_nr_ch_7_1rigs folders for different machine learning algorithms and RIGS as sampler
 * Run Plot_legend to generate the legend for figure 10

@@ -6,7 +6,7 @@
 * Run Plot_legend to generate the legend for figure 17
 
 ### LB
-* Input data: folder features_generated_experiences, synthetic_raters_scores_for_generated_experiences, generated in Synthetic_raters_implementation
+* Input data: folder features_generated_experiences, synthetic_raters_scores_for_generated_experiences, generated in Synthetic_raters
 * Run generate_figure_17.py to generate figure 17 and run all the other scripts contained in scripts. Those files produce in output folder:
   * folders SVRigs_results_qn_99_nr_ch_7_perc that contains data for different ratio of train and test splits
 * Run Plot_legend to generate the legend for figure 17

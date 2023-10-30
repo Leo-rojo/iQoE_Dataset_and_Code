@@ -5,7 +5,7 @@
 * Run generate_figure_18.py to generate figure 18
 
 ### LB
-* Input data: folder features_generated_experiences and synthetic_raters_scores_for_generated_experiences. Both of them can be generated in Synthetic_raters_implementation.
+* Input data: folder features_generated_experiences and synthetic_raters_scores_for_generated_experiences. Both of them can be generated in Synthetic_raters.
 * Run generate_figure_18.py to generate figure 18 and run all the other scripts contained in scripts. Those files produce in output folder:
   * folder mq which contains the saved iQoE models at different training steps for all the synthetic raters
   * files space_ave.npy and space_std.npy which contains the space on disk occupied by iQoE models at different training steps for all the synthetic raters
