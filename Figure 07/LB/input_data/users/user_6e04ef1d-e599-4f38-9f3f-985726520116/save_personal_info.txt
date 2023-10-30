@@ -1,0 +1,10 @@
+browser_chrome
+width_1920
+height_1080
+homecountry_MY
+asscountry_MY
+gender_male
+age_43
+device_PC
+annoying_pleasant
+suggestions_great

@@ -4,7 +4,7 @@ import os
 import numpy as np
 import pandas as pd
 import math
-#insert path to your folder Figure 6 and 8 and Table 1
+#insert path to your folder Figure 06 and 8 and Table 1
 folder_for_result='details_personal'
 colori=cm.get_cmap('tab10').colors
 
