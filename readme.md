@@ -5,6 +5,15 @@ The repository collects and openly releases the dataset and accompanying code fo
 
 To reproduce the results, please follow the instructions provided in the README.md files located inside the subfolders.
 
+## Structure
+We support the reproducibility on two levels characterized by different resource requirements and time commitments. Level A (LA) recreates all figures and tables, mostly by running
+our Python code. The reproduction performs limited calculations based on data in intermediate
+representations, e.g., scores by a rater for a personalized series of experiences. Level B (LB) involves
+advanced computations, such as model training, and carries out in-depth replication from raw
+data, allowing also for new data from independent subjective studies and simulations. While LA is
+primarily for validating the results of this paper, LB targets the long-term impact of the artifacts
+through their reuse in future research.
+
 ## Requirements
 
 We tested the code with `Python 3.7` with the following additional requirements that can be found in the `requirements.txt` file:
