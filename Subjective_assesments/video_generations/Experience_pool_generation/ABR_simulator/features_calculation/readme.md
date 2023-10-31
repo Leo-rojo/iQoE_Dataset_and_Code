@@ -7,6 +7,6 @@
 
 #### additional info
 * file calculate_features_chunks_parall.py need the path to vmaf_4k_model in json format. Vmaf model can be downloaded from https://github.com/Netflix/vmaf/tree/master/model
-* current mkvfiles folder is just an empty placeholder
-
+* current mkvfiles folder is an exemplification of the structure with files (for space reasons we have included only text files to simulate the actual video)
+* current folder chunk_features gives an exemplification of the final output of the process. The file Organize_features.py generates associated .xlsx files for better analysis of the output.
 
