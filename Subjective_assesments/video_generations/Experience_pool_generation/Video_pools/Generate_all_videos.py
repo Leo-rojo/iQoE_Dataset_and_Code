@@ -1,5 +1,5 @@
 import numpy as np
-from Subjective_assessment_iQoE_v2_parallel import generate_video
+from functions import generate_video
 
 maps = list([str(i) for i in [6, 9, 10, 11, 12, 13, 1, 2, 3, 4, 5, 7, 8]])
 nr_chunks=4

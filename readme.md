@@ -14,13 +14,12 @@ through their reuse in future research.
 
 ### Artifact checklist
 - Algorithm: Algorithm 1.
-- Programs: (LA) Python 3.7 or above with supporting libraries; (LB) FFmpeg, ffmpeg-debug-qp, Park,
-MP4Box of GPAC framework, BiQPS, HTML, JavaScript, and CSS.
+- Programs: (LA) Python 3.7 or above with supporting libraries; (LB) FFmpeg, ffmpeg-debug-qp, Park, MP4Box, BiQPS, HTML, JavaScript, and CSS.
 - Models: SVR, RF, GP, and XGB.
 - Datasets: (LA) iQoE and Waterloo-IV; (LB) network traces, video chunks, and experience set.
 - Hardware: no particular requirements.
 - Output: (LA) all figures and tables of the paper; (LB) Fig. 2-13 and 15-18 and Tables 1 and 2.
-- Approximate disk space requirement: (LA) 3 GB; (LB) 14 GB.
+- Approximate disk space requirement: (LA) 4 GB; (LB) 24 GB.
 - Approximate experiment completion time: (LA) under one hour; (LB) about one week.
 - Availability: public on GitHub.
 
@@ -39,7 +38,7 @@ SVR, RF, GP, and XGB are from Python’s scikit-learn and xgboost libraries.
 ### Datasets. 
 In addition to the experiment-specific data in each subfolder, the repository includes a standalone Datasets folder with our iQoE dataset in its three versions used by different
 experiments. These versions appear in the .xlsx format in subfolders dataset_34, dataset_120, and
-dataset_128 where 34, 120, and 128 refer to the number of raters in the dataset version. from the motivation and simulation sections leverage the Waterloo-IV dataset<sup>1</sup>. The in-depth LB
+dataset_128 where 34, 120, and 128 refer to the number of raters in the dataset version. The results from the motivation and simulation sections leverage the Waterloo-IV dataset<sup>1</sup>. The in-depth LB
 reproducibility utilizes network traces<sup>2</sup>, video chunks<sup>3</sup>, and experience set<sup>4</sup>.
 
 ### Extra code for the LB reproducibility. 

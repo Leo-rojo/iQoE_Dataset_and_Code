@@ -30,7 +30,7 @@ def create_stalled_video(path, pathout, namefile, path_to_gif, stall_duration, d
     newname = str(namefile).split('.mkv')[0] + '.jpg'
     jpg_path = os.path.join(pathout, newname)
     file_path = os.path.join(path, namefile)
-    komanda = 'ffmpeg\\ffmpeg-2021\\bin\\ffmpeg.exe -sseof -3 -i ' + file_path + ' -update 1 -q:v 1 ' + jpg_path
+    komanda = 'ffmpeg -sseof -3 -i ' + file_path + ' -update 1 -q:v 1 ' + jpg_path
     os.system(komanda)
     path_mp4 = os.path.join(path, namefile)
     print(path_mp4)
@@ -46,7 +46,7 @@ def create_stalled_video(path, pathout, namefile, path_to_gif, stall_duration, d
     y = helper_format_result_string(result2)
     name_file_for_parallel = str(namefile).split('.mkv')[0] + str(video_idx) + '.mkv'
     path_mp4s = os.path.join(pathout, 's' + name_file_for_parallel)
-    command = 'ffmpeg\\ffmpeg-2021\\bin\\ffmpeg.exe -loop 1 -i ' + jpg_path + ' -f lavfi -i anullsrc=channel_layout=' + y[5].split('(')[0] + ':sample_rate=' + y[3] + ' -t ' + str(stall_duration) + ' -c:a ' + y[1] + ' -c:v libx264 -t ' + str(stall_duration) + ' -pix_fmt yuv420p -vf scale=' + x[1] + ':' + x[3] + ' -r ' + x[5].split('/')[0] + ' -y ' + path_mp4s
+    command = 'ffmpeg -loop 1 -i ' + jpg_path + ' -f lavfi -i anullsrc=channel_layout=' + y[5].split('(')[0] + ':sample_rate=' + y[3] + ' -t ' + str(stall_duration) + ' -c:a ' + y[1] + ' -c:v libx264 -t ' + str(stall_duration) + ' -pix_fmt yuv420p -vf scale=' + x[1] + ':' + x[3] + ' -r ' + x[5].split('/')[0] + ' -y ' + path_mp4s
     os.system(command)
     temp_path = 'temporaryList' + str(video_idx) + '.txt'
     open(temp_path, 'w').close()
@@ -55,7 +55,7 @@ def create_stalled_video(path, pathout, namefile, path_to_gif, stall_duration, d
     komanda = " echo file '" + path_mp4s + "'" + '  >>  ' + temp_path
     os.system(komanda)
     path_mp4ss = os.path.join(pathout, 'ss' + name_file_for_parallel)
-    komanda = 'ffmpeg\\ffmpeg-2021\\bin\\ffmpeg.exe -f concat -safe 0 -i ' + temp_path + ' -c copy ' + path_mp4ss
+    komanda = 'ffmpeg -f concat -safe 0 -i ' + temp_path + ' -c copy ' + path_mp4ss
     os.system(komanda)
     ss_path = os.path.join(pathout, 'sss' + name_file_for_parallel)
     subkomanda = "'gte(t," + str(duration) + ")'"
@@ -63,7 +63,7 @@ def create_stalled_video(path, pathout, namefile, path_to_gif, stall_duration, d
     up_path = os.path.join(pathout, 'ssup' + name_file_for_parallel)
     up = 'ffmpeg -i ' + path_mp4ss + ' -vf scale=3840x2160:flags=bilinear ' + up_path
     os.system(up)
-    komanda = 'ffmpeg\\ffmpeg-2021\\bin\\ffmpeg.exe -i ' + up_path + ' -ignore_loop 0 -i ' + path_to_gif + ' -filter_complex "[1:v]scale=%d:%d,rotate=PI/6:c=black@0:ow=rotw(PI/6):oh=roth(PI/6) [rotate];[0:v][rotate] overlay=(main_w-overlay_w)/2:(main_h-overlay_h)/2:format=auto:shortest=1:enable=' % (scale_gif, scale_gif) + subkomanda + '" -codec:a copy -y ' + ss_path
+    komanda = 'ffmpeg -i ' + up_path + ' -ignore_loop 0 -i ' + path_to_gif + ' -filter_complex "[1:v]scale=%d:%d,rotate=PI/6:c=black@0:ow=rotw(PI/6):oh=roth(PI/6) [rotate];[0:v][rotate] overlay=(main_w-overlay_w)/2:(main_h-overlay_h)/2:format=auto:shortest=1:enable=' % (scale_gif, scale_gif) + subkomanda + '" -codec:a copy -y ' + ss_path
     os.system(komanda)
     seg_path = os.path.join(pathout, 'segmentList' + str(video_idx) + '.txt')
     komanda = " echo file '" + ss_path + "'" + '  >>  ' + seg_path
@@ -128,6 +128,6 @@ def generate_video(features_experience, init_c, maps, chunks_nr, chunks_per_exp,
             f.write('file stitch' + str(video_idx) + '/' + files)
             f.write('\n')
 
-    komanda = 'ffmpeg\\ffmpeg-2021\\bin\\ffmpeg.exe -f concat -safe 0 -i ' + full_path + ' -filter:v "format=yuv420p" ' + final_path
+    komanda = 'ffmpeg -f concat -safe 0 -i ' + full_path + ' -filter:v "format=yuv420p" ' + final_path
     os.system(komanda)
     shutil.copy(final_path, folder_out + '\\' + name_final_video)
