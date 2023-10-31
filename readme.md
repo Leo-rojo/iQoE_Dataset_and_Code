@@ -46,30 +46,33 @@ reproducibility utilizes network traces<sup>2</sup>, video chunks<sup>3</sup>, a
 To support independent subjective tests, the GitHub repository includes a standalone Subjective_assessments folder. This folder provides the code of our
 iQoE website and also enables real-world subjective assessments with the code that creates training
 and testing experiences. To facilitate new simulations, the repository contains a Synthetic_raters
-folder with the code that generates synthetic raters, synthetic video experiences, and scores of the
+folder with the code that generates synthetic raters, synthetic experiences, and scores of the
 experiences by the synthetic raters.
 
 ### Installation
 The LA reproducibility involves installation of Python 3.7 or above with libraries as described in the
 requirements.txt file. For the in-depth LB replication, the additional installations include Park<sup>5</sup> and
-FFmpeg<sup>6</sup>, with Codex<sup>7</sup> as the recommended FFmpeg version, to generate video experiences and
+FFmpeg<sup>6</sup>, with Codex<sup>7</sup> as the recommended FFmpeg version, to generate experiences and
 calculate PSNR, SSIM, VMAF, and other metrics. The computation of the quantization parameter
-leverages ffmpeg-debug-qp<sup>8</sup>. The creation of chunks use MP4Box<sup>9</sup>. The experiments with baseline
+leverages ffmpeg-debug-qp<sup>8</sup>. The creation of video chunks uses MP4Box<sup>9</sup>. The experiments with baseline
 model L require installation of BiQPS<sup>10</sup>. Reproduction of our subjective studies from scratch involves
 deployment of the iQoE website developed in HTML, JavaScript, and CSS.
 
 ### Evaluation and expected results
 The repository allocates a separate self-contained folder for reproducing the results of each figure or table on the LA and/or LB levels, with readme.md files providing
 specific instructions.
+
 The LA reproducibility of the results in Fig. 2-13 and 15-18 as well as Tables 1 and 2 largely
 consists in running the provided Python code on the associated dataset. Fig. 2-4 utilize Waterloo-IV
 data. Fig. 5, 6, 8, and 15 and Table 1 rely on the dataset_120 version of our iQoE dataset. Fig. 7
 leverages the extended dataset_128 version. The validation of the synthetic raters in Fig. 9 entails
 the dataset_34 version of the iQoE dataset. The replication of Fig. 9-13 and 16-18 and Table 2 on the
 LA level leverages the data already recorded in our simulations, e.g., scores by the synthetic raters.
+
 For completeness of the LA reproducibility, the GitHub repository includes the .pptx source of
 our diagrams in Fig. 1 and supports replication of the screenshots in Fig. 14 by providing access to
 our original iQoE website<sup>12</sup> with anonym and iQoE_92 as the username and password, respectively.
+
 Comprehensive replication of our results on the LB level involves additional existing and newly
 developed software. The code in the Subjective_assessments folder enables a researcher to recreate
 the subjective studies by deploying an own version of our iQoE website and preparing own training
