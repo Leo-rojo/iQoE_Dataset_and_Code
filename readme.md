@@ -129,4 +129,4 @@ itu-p1203==1.8.3
 ```
 
 ### Terminology
-We use the terms 'user' and 'rater' interchangeably in the names of folders, filenames, and textual documents.
+In the textual descriptions of the repository, as well as in the names of folders and files, we employ terms rater and user interchangeably.
