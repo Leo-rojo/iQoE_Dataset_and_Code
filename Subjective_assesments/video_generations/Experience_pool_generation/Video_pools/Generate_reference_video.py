@@ -18,7 +18,7 @@ for i in range(0,len(Reference_experience),10):
 #representation_index,rebuffering_duration,video_bitrate,chunk_size,width,height,is_best,psnr,ssim,vmaf
 #kbit/s video bitrate
 #chunk size in bytes
-folder_mkv='' #add path to mkvfiles folder, which need to stay outside the main folder due to its name
+folder_mkv='' #add path to mkvfiles folder
 for i in random.choices(range(295), k=10):
     initial_chunk_nr=i
     generate_video(Reference_experience, initial_chunk_nr, maps, chunks_nr, nr_chunks,i,folder_mkv,'reference_video')

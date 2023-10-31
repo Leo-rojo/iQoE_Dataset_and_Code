@@ -77,14 +77,14 @@ Comprehensive replication of our results on the LB level involves additional exi
 developed software. The code in the Subjective_assessments folder enables a researcher to recreate
 the subjective studies by deploying an own version of our iQoE website and preparing own training
 and testing experiences so as to reproduce Fig. 5-9 and 15 and Table 1. The Synthetic_raters folder
-empowers the researcher to create new synthetic raters and conduct independent simulations for
+empowers the researcher to engender new synthetic raters and conduct independent simulations for
 the LB reproducibility of Fig. 9-13 and 16-18 and Table 2.
 
 <sup>1</sup>https://dx.doi.org/10.21227/j15a-8r35
 
 <sup>2</sup>https://doi.org/10.6084/m9.figshare.24460084.v1
 
-<sup>3</sup>https://doi.org/10.6084/m9.figshare.24460078
+<sup>3</sup>https://doi.org/10.6084/m9.figshare.24460078.v2
 
 <sup>4</sup>https://doi.org/10.6084/m9.figshare.24460081.v1
 
@@ -127,14 +127,6 @@ Werkzeug==2.2.3
 xgboost==1.6.2
 itu-p1203==1.8.3
 ```
-### L model
-For running baseline L model it needs to be installed following https://github.com/TranHuyen1191/BiQPS. 
-
-### FFmpeg
-For running experiments that involve creation of videos and calculation of relative IFs like PSNR, SSIM, VMAF FFmpeg need to be installed: https://ffmpeg.org/download.html we used the builded version in https://www.gyan.dev/ffmpeg/builds/. 
-
-### QP values
-For calculation of QP values we used ffmpeg-debug-qp (https://github.com/slhck/ffmpeg-debug-qp).
 
 ### Terminology
 We use the terms 'user' and 'rater' interchangeably in the names of folders, filenames, and textual documents.
