@@ -27,7 +27,7 @@ through their reuse in future research.
 We structure the GitHub repository in folders dedicated to a figure or table. Each folder contains LA and/or LB
 subfolders corresponding to the two levels of result reproducibility. The subfolders hold all the data
 and code required for generating the respective results.
-### Hardware dependencies. 
+### Hardware dependencies
 There are no specific hardware requirements except for support of
 Python. The machine used in our experiments is an Intel i7 with six cores, 2.6-GHz CPUs, 16-GB
 RAM, and Windows 10.
