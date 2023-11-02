@@ -5,7 +5,7 @@ The repository collects and openly releases the dataset and accompanying code fo
 
 To reproduce the results, please follow the instructions provided in the readme.md files located inside the subfolders.
 
-## Structure
+### Structure
 We support the reproducibility on two levels characterized by different resource requirements and time commitments. Level A (LA) recreates all figures and tables, mostly by running
 our Python code. The reproduction performs limited calculations based on data in intermediate representations, e.g., scores by a rater for a personalized series of experiences. Level B (LB) involves advanced computations, such as model training, and carries out in-depth replication from raw
 data, allowing also for new data from independent subjective studies and simulations. While LA is
@@ -23,7 +23,7 @@ through their reuse in future research.
 - Approximate experiment completion time: (LA) under one hour; (LB) about one week.
 - Availability: public on GitHub.
 
-### Artifact access. 
+### Artifact access
 We structure the GitHub repository in folders dedicated to a figure or table. Each folder contains LA and/or LB
 subfolders corresponding to the two levels of result reproducibility. The subfolders hold all the data
 and code required for generating the respective results.
@@ -31,17 +31,17 @@ and code required for generating the respective results.
 There are no specific hardware requirements except for support of
 Python. The machine used in our experiments is an Intel i7 with six cores, 2.6-GHz CPUs, 16-GB
 RAM, and Windows 10.
-### Software dependencies. 
+### Software dependencies 
 The requirements.txt file in the repository lists the software dependencies, with readme.md files in individual subfolders supplying any further details and clarifications.
-### Models. 
+### Models
 SVR, RF, GP, and XGB are from Python’s scikit-learn and xgboost libraries.
-### Datasets. 
+### Datasets
 In addition to the experiment-specific data in each subfolder, the repository includes a standalone Datasets folder with our iQoE dataset in its three versions used by different
 experiments. These versions appear in the .xlsx format in subfolders dataset_34, dataset_120, and
 dataset_128 where 34, 120, and 128 refer to the number of raters in the dataset version. The results from the motivation and simulation sections leverage the Waterloo-IV dataset<sup>1</sup>. The in-depth LB
 reproducibility utilizes network traces<sup>2</sup>, video chunks<sup>3</sup>, and experience set<sup>4</sup>.
 
-### Extra code for the LB reproducibility. 
+### Extra code for the LB reproducibility
 To support independent subjective tests, the GitHub repository includes a standalone Subjective_assessments folder. This folder provides the code of our
 iQoE website and also enables real-world subjective assessments with the code that creates training
 and testing experiences. To facilitate new simulations, the repository contains a Synthetic_raters
@@ -102,7 +102,7 @@ the LB reproducibility of Fig. 9-13 and 16-18 and Table 2.
 <sup>11</sup>https://iqoe.itec.aau.at
 
 
-## Requirements
+### Requirements
 
 We tested the code with `Python 3.7` with the following additional requirements that can be found in the `requirements.txt` file:
 
