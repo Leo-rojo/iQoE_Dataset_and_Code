@@ -113,7 +113,6 @@ Flask_HTTPAuth==4.7.0
 k_means_constrained==0.7.0
 matplotlib==3.5.3
 modAL==0.4.1
-modAL==0.55.3917
 numpy==1.21.6
 pandas==1.3.5
 Pillow==9.2.0
