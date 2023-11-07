@@ -14,7 +14,7 @@ through their reuse in future research.
 
 ### Artifact checklist
 - Algorithm: Algorithm 1.
-- Programs: (LA) Python 3.7 or above with supporting libraries; (LB) FFmpeg, ffmpeg-debug-qp, Park, MP4Box, BiQPS, HTML, JavaScript, and CSS.
+- Programs: (LA) Python 3.7 with supporting libraries; (LB) FFmpeg, ffmpeg-debug-qp, Park, MP4Box, BiQPS, HTML, JavaScript, and CSS.
 - Models: SVR, RF, GP, and XGB.
 - Datasets: (LA) iQoE and Waterloo-IV; (LB) network traces, video chunks, and experience set.
 - Hardware: no particular requirements.
@@ -49,7 +49,7 @@ folder with the code that generates synthetic raters, synthetic experiences, and
 experiences by the synthetic raters.
 
 ### Installation
-The LA reproducibility involves installation of Python 3.7 or above with libraries as described in the
+The LA reproducibility involves installation of Python 3.7 with libraries as described in the
 requirements.txt file. For the in-depth LB replication, the additional installations include Park<sup>5</sup> and
 FFmpeg<sup>6</sup>, with Codex<sup>7</sup> as the recommended FFmpeg version, to generate experiences and
 calculate PSNR, SSIM, VMAF, and other metrics. The computation of the quantization parameter
