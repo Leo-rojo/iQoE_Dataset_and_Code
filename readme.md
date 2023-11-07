@@ -55,7 +55,7 @@ FFmpeg<sup>6</sup>, with Codex<sup>7</sup> as the recommended FFmpeg version, to
 calculate PSNR, SSIM, VMAF, and other metrics. The computation of the quantization parameter
 leverages ffmpeg-debug-qp<sup>8</sup>. The creation of video chunks uses MP4Box<sup>9</sup>. The experiments with baseline
 model L require installation of BiQPS<sup>10</sup>. The experiments with baseline
-model P require installation of ITU-T Rec. P.1203 Standalone Implementation<sup>11</sup>. Reproduction of our subjective studies from scratch involves
+model P require installation of ITU-T Rec. P.1203 Standalone Implementation<sup>11</sup> (we used the version 1.8.3 which is compliant with Python 3.7). Reproduction of our subjective studies from scratch involves
 deployment of the iQoE website developed in HTML, JavaScript, and CSS.
 
 ### Evaluation and expected results
