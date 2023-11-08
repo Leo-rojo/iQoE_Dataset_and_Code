@@ -32,10 +32,10 @@ for upfold in os.listdir(path_iQoE):
     if upfold.split('_')[0]=='user':
         user_scores=[]
         user_videos=[]
-        for fold in os.listdir(path_iQoE+'\\'+upfold):
+        for fold in os.listdir(path_iQoE+'//'+upfold):
             identifier=fold.split('_')[-2]
             oldnew=fold.split('_')[-1]
-            user_folder = path_iQoE+'\\'+upfold+'/user_' + identifier + '_'+oldnew
+            user_folder = path_iQoE+'//'+upfold+'/user_' + identifier + '_'+oldnew
             print(user_folder)
 
             ##train data
@@ -115,7 +115,7 @@ for user_letter,single_user_scores in enumerate(users_scores):
     plt.ylabel('User score')
     ax.set_ylim([1, 101])
     plt.legend()
-    plt.savefig(path_iQoE+'\\figures' + '/' + 'user_'+['A','B'][user_letter]+'_scores' + '.png')
+    plt.savefig(path_iQoE+'//figures' + '/' + 'user_'+['A','B'][user_letter]+'_scores' + '.png')
     plt.close()
 
 collect_him_corr=[]

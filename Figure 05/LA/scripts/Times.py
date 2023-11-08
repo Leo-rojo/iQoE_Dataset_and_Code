@@ -18,7 +18,7 @@ for fold in os.listdir(us_folder):
         id=fold.split('_')[1]
         for i in ['save_time_nonone.txt','save_time_correct.txt','save_time_correct2.txt']:
             try:
-                os.remove(us_folder+'/'+fold+'\\'+ i )
+                os.remove(us_folder+'/'+fold+'//'+ i )
             except OSError:
                 pass
 
@@ -26,10 +26,10 @@ for fold in os.listdir(us_folder):
 for fold in os.listdir(us_folder):
     if fold.split('_')[0] == 'user':
         id=fold.split('_')[1]
-        with open(us_folder+'/'+fold+'\\'+ 'save_time.txt', 'r') as f:
+        with open(us_folder+'/'+fold+'//'+ 'save_time.txt', 'r') as f:
             lines = f.readlines()
             lines = [l for l in lines if l.split('_')[-1].replace('\n', '') != 'None']
-            with open(us_folder+'/'+fold+'\\'+"save_time_nonone.txt", "w") as f1:
+            with open(us_folder+'/'+fold+'//'+"save_time_nonone.txt", "w") as f1:
                 f1.writelines(lines)
 
 #unfortunately, some raters just paused the experience without pressing the button pause (or they just closed the window or they let it open for a long time without interacting)
@@ -38,7 +38,7 @@ for fold in os.listdir(us_folder):
         id=fold.split('_')[1]
         print(id)
         user_info=[]
-        with open(us_folder+'/'+fold+'\\'+ 'save_time_nonone.txt', 'r') as fp:
+        with open(us_folder+'/'+fold+'//'+ 'save_time_nonone.txt', 'r') as fp:
             linesfp = [line.rstrip() for line in fp]
             #read each line of file
             for line_nr in range(len(linesfp)):
@@ -46,10 +46,10 @@ for fold in os.listdir(us_folder):
                 val=line.split('_')[-1]
                 if val[0]=='e':
                     date_time = time.gmtime(float(val.replace('experience', '')))
-                    with open(us_folder + '/' + fold + '\\' + "save_time_correct.txt", "a") as f1:
+                    with open(us_folder + '/' + fold + '//' + "save_time_correct.txt", "a") as f1:
                         f1.writelines(line + '\n')
                 elif line.split('_')[-2]=='pause':
-                    with open(us_folder + '/' + fold + '\\' + "save_time_correct.txt", "a") as f1:
+                    with open(us_folder + '/' + fold + '//' + "save_time_correct.txt", "a") as f1:
                         f1.writelines(line + '\n')
                     break
                 else:
@@ -67,7 +67,7 @@ for fold in os.listdir(us_folder):
                     #calculate the difference between the two times in seconds!!!
                     diff = time.mktime(date_time2) - time.mktime(date_time)
                     #diff in secs
-                    with open(us_folder+'/'+fold+'\\'+ "save_time_correct.txt", "a") as f1:
+                    with open(us_folder+'/'+fold+'//'+ "save_time_correct.txt", "a") as f1:
                         if diff>60*5: #five mins of inactivity
                             #add current line+pause with this + restart with next line
                             f1.writelines(line+'\n')
@@ -81,7 +81,7 @@ for fold in os.listdir(us_folder):
                             f1.writelines(line+'\n')
 
         #check for restart alone
-        with open(us_folder+'/'+fold+'\\'+ 'save_time_correct.txt', 'r') as fp:
+        with open(us_folder+'/'+fold+'//'+ 'save_time_correct.txt', 'r') as fp:
             #read each line of file
             for line in fp:
                 nameref=line.split('_')[-2]
@@ -92,7 +92,7 @@ for fold in os.listdir(us_folder):
         output_file = "save_time_correct2.txt"
 
         # Open the input file for reading and the output file for writing
-        with open(us_folder+'/'+fold+'\\'+ input_file, 'r') as f_in, open(us_folder+'/'+fold+'\\'+ output_file, 'w') as f_out:
+        with open(us_folder+'/'+fold+'//'+ input_file, 'r') as f_in, open(us_folder+'/'+fold+'//'+ output_file, 'w') as f_out:
             last_line_started_with_pause = False
             val=0
             for line in f_in:
@@ -121,7 +121,7 @@ for fold in os.listdir(us_folder):
         ids.append(id)
         print(id)
         user_info=[]
-        with open(us_folder+'/'+fold+'\\'+ 'save_time_correct2.txt', 'r') as fp:
+        with open(us_folder+'/'+fold+'//'+ 'save_time_correct2.txt', 'r') as fp:
             #read each line of file
             for line in fp:
                 nameref=line.split('_')[-2]

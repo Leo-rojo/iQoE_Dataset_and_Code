@@ -39,7 +39,7 @@ figLegend = pylab.figure(figsize = (20,10),dpi=100)
 
 # produce a legend for the objects in the other figure
 pylab.figlegend(*ax.get_legend_handles_labels(), loc = 'upper left',ncol=11,frameon=False,columnspacing=0.6,handletextpad=0.2,handlelength=1.45)
-figLegend.savefig("legendss_mos_dashed.pdf",bbox_inches='tight')
+figLegend.savefig("../legendss_mos_dashed.pdf",bbox_inches='tight')
 plt.close()
 ##########################################
 figData = pylab.figure()

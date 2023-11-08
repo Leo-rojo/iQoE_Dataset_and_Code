@@ -6,9 +6,9 @@ from math import sqrt
 import warnings
 warnings.filterwarnings("ignore")
 #os.chdir('/Figure 06 and 8 and Table 1')
-path_iQoE='../input_data/raters'
+path_iQoE='../input_data/users'
 
-sota_folder='sotamodels\\Test_videos_iqoe'
+sota_folder='sotamodels/Test_videos_iqoe'
 p1203_scores=np.load(sota_folder+'/p1203_scores.npy')
 lstm_scores=np.load(sota_folder+'/scoresbiqps.npy')
 
@@ -51,7 +51,7 @@ for fold in os.listdir(path_iQoE):
         maes_lstm.append(mean_absolute_error(y_test, lstm_aligned))
         rmses_lstm.append(sqrt(mean_squared_error(y_test, lstm_aligned)))
 
-save_path='../output_data/\\'
+save_path='../output_data/'
 np.save(save_path+'p1203_mae_each_user.npy',maes_p1203)
 np.save(save_path+'p1203_rmse_each_user.npy',rmses_p1203)
 np.save(save_path+'lstm_mae_each_user.npy',maes_lstm)
