@@ -13,7 +13,7 @@ mosarray=[float(i) for i in mosarray]
 
 #takes user scores and order them based on hightest discrepancy
 collect_all=[]
-users_scores=np.load('../output_data/users_raters_hdtv.npy')
+users_scores=np.load('../output_data/users_scores_hdtv.npy')
 medians=[]
 #sort users_score by median
 for i in range(32):

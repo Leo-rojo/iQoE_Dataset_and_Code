@@ -20,7 +20,7 @@ rs=42
 #take mos scores from original hdtv scores
 mosarray=np.load('../output_data/mos_scores_hdtv.npy')
 mosarray=[float(i) for i in mosarray]
-users_scores=np.load('../output_data/users_raters_hdtv.npy')
+users_scores=np.load('../output_data/users_scores_hdtv.npy')
 #calculate min and max of all the raters scores
 y2=[]
 for u in range(1,33):
@@ -31,7 +31,7 @@ for u in range(1,33):
 
 #take all individual user scores which I have saved previously
 collect_all=[]
-users_scores=np.load('../output_data/users_raters_hdtv.npy')
+users_scores=np.load('../output_data/users_scores_hdtv.npy')
 
 #function to fit video_atlas
 def fit_supreg(all_features,mosscore):

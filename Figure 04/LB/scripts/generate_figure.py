@@ -46,11 +46,11 @@ ax.tick_params(axis='x', which='major', width=7, length=24)
 ax.tick_params(axis='y', which='major', width=7, length=24)
 plt.xlabel('Shuffled influence factor', fontdict=font_axes_titles)
 ax.set_ylim([0, 3])
-plt.savefig('importance_hdtv_mae_mean_atypical.pdf', bbox_inches='tight')
+plt.savefig('../importance_hdtv_mae_mean_atypical.pdf', bbox_inches='tight')
 plt.close()
 #write mean_importances in csv for atypical raters for each legend
 df = pd.DataFrame(mean_importances, index=legends, columns=['mean_importances'])
-df.to_csv('importance_hdtv_mae_mean_atypical.csv', sep=',', encoding='utf-8')
+df.to_csv('../importance_hdtv_mae_mean_atypical.csv', sep=',', encoding='utf-8')
 
 #rmse
 metric='rmse'
@@ -78,9 +78,9 @@ ax.tick_params(axis='x', which='major', width=7, length=24)
 ax.tick_params(axis='y', which='major', width=7, length=24)
 plt.xlabel('Shuffled influence factor', fontdict=font_axes_titles)
 ax.set_ylim([0, 3])
-plt.savefig('importance_hdtv_rmse_mean_atypical.pdf', bbox_inches='tight')
+plt.savefig('../importance_hdtv_rmse_mean_atypical.pdf', bbox_inches='tight')
 plt.close()
 
 #write mean_importances in csv for atypical raters for each legend
 df = pd.DataFrame(mean_importances, index=legends, columns=['mean_importances'])
-df.to_csv('importance_hdtv_rmse_mean_atypical.csv', sep=',', encoding='utf-8')
+df.to_csv('../importance_hdtv_rmse_mean_atypical.csv', sep=',', encoding='utf-8')

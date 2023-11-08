@@ -18,7 +18,7 @@ plt.rcParams['ps.fonttype'] = 42
 mosarray=np.load('../output_data/mos_scores_hdtv.npy')
 mosarray=[float(i) for i in mosarray]
 collect_all=[]
-users_scores=np.load('../output_data/users_raters_hdtv.npy')
+users_scores=np.load('../output_data/users_scores_hdtv.npy')
 medians=[]
 #sort users_score by median
 for i in range(32):

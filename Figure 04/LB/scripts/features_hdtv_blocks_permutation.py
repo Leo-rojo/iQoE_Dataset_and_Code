@@ -144,5 +144,5 @@ for each_user_y in users_score_hdtv:
     conta += 1
     save_mae_importance_for_all_hdtv.append(group_importances)
     save_rmse_importance_for_all_hdtv.append(group_importances_sqrt)
-np.save('output_data/save_mae_importance_for_all_hdtv.npy',save_mae_importance_for_all_hdtv)
-np.save('output_data/save_rmse_importance_for_all_hdtv.npy',save_rmse_importance_for_all_hdtv)
+np.save('../output_data/save_mae_importance_for_all_hdtv.npy',save_mae_importance_for_all_hdtv)
+np.save('../output_data/save_rmse_importance_for_all_hdtv.npy',save_rmse_importance_for_all_hdtv)

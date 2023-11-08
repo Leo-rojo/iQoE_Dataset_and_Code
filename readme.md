@@ -125,6 +125,8 @@ selenium==4.14.0
 statsmodels==0.14.0
 Werkzeug==2.2.3
 xgboost==1.6.2
+openpyxl==3.0.5
+ortools==9.3.10497
 itu-p1203==1.8.3
 ```
 
