@@ -11,7 +11,7 @@ from matplotlib import cm
 
 #insert path to folder Figure 15
 
-us_folder='../input_data/raters'
+us_folder='../input_data/users'
 res=[]
 users_info = []
 users_scores=[]
