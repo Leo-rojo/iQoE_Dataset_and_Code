@@ -66,8 +66,6 @@ for mod in mod_names:
         foru.append(np.load('../output_data/time_over/time_overhead_'+str(u)+mod+'.npy'))
 bymod_mean_time.append(np.mean(foru, axis=0))
 bymod_std_time.append(np.std(foru, axis=0))
-np.save('time_ave',bymod_mean_time)
-np.save('time_std',bymod_std_time)
 fig1 = plt.figure(figsize=(20, 10),dpi=100)
 c=0
 for i in bymod_mean_time:

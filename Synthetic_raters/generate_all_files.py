@@ -2,7 +2,6 @@ import os
 import warnings
 import shutil
 warnings.filterwarnings("ignore")
-os.chdir('C:/Users/leona/Desktop/iQoE_Dataset_and_Code/Synthetic_raters')
 os.chdir('scripts')
 os.system('python Save_features_and_user_scores_W4.py')
 print('features and scores W4 done')
